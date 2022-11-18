@@ -1,0 +1,109 @@
+contacts{
+    margin-left: 200px;
+}
+
+.imagem{
+    vertical-align: middle;
+    margin-left: 100px;
+    margin-top: 50px;
+    border-radius: 50%;
+}
+
+li{
+    margin-left: 70px;
+    font-family:Courier New, monospace;
+    font-size:20px;
+}
+
+i{
+    margin-left: -30px;
+}
+
+h1{
+    margin-left: 50px;
+    margin-top:130px;
+    text-decoration: underline;
+}
+
+h2{
+    margin: 70px;
+    background-color: #88888b61;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+    font-weight: bold;
+}
+
+h3{
+    font-weight: bold;
+    margin-left: 70px;
+    font-family:Courier New, monospace;
+    font-size:36px;
+}
+
+h4{
+    margin: 70px;
+    background-color: #88888b61;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+    font-weight: bold;
+    font-size:28px;
+}
+
+h5{
+    margin-left: 50px;
+    font-family:Courier New, monospace;
+    font-size:20px;
+}
+
+p{
+    margin-left: 70px;
+    font-family:Courier New, monospace;
+    font-size:20px;
+
+}
+
+.descricao{
+    margin-top: 20px;
+    margin-right: 100px;
+}
+
+.linha{
+    height: 2px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.vertical {
+    border-left: 3px solid black;
+    height: 1250px;
+    /*position:absolute;*/
+    left: 50%;
+}
+
+.icons{
+    font-size:24px;
+    margin-left: 100px;
+}
+
+.button{
+    background-color: #00539CFF;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+}
+.form{
+    text-align: center;
+    position: absolute;
+    margin-left: 70px;
+}
+.label{
+    display: flex;
+}
+
+.divparamargem{
+    margin-top: 50px;
+}
+
+
