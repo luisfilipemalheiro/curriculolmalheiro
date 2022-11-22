@@ -43,7 +43,7 @@
 
 <div class="row">
     <div class="col-12">
-        <form class="form">
+        <form class="formulario">
             <div class="label">
                 <input type="text" class="form-control" placeholder="Nome:">
                 <input type="text" class="form-control" placeholder="Email:">
