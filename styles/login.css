@@ -37,3 +37,18 @@ body{
     margin: 23px 2px 5px;
 }
 
+.register{
+    background-color: #08ea0f;
+    border: none;
+    color: white;
+    padding: 8px 193px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: 23px 2px 5px;
+}
+
+
+
