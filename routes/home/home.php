@@ -1,3 +1,3 @@
-
-
-<h1>This is a test</h1>
+<?php
+require_once '../menu.php';
+?>
