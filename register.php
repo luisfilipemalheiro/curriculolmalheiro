@@ -1,5 +1,17 @@
-<html>
+<?php
+require_once('connectionBD/connect.php');
 
+// AUTORES: Extração da base de dados de todos os autores
+// Para preenchimento do "select" do formulário
+$dados = array();
+# preparar a query
+$INSTRUCAO = $LIGACAO->prepare('SELECT id, description FROM rolesuser');
+# definir o fetch mode
+$INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
+# executar instrução
+$INSTRUCAO->execute($dados);
+?>
+<html>
 <head>
     <title>Register - Back Office</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -18,29 +30,35 @@ require_once './routes/headers.php';
     <div class="card mx-auto" style="width: 30%; margin-top: 3rem; border: 0px">
 
         <div class="card-body">
-            <form>
+            <form action="register_db.php">
                 <div class="form-group">
                     <label class="label" for="name">Name</label>
-                    <input type="text" class="form-control" placeholder="Name" required>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
                 </div>
                 <div class="form-group">
-                    <label class="label" for="name">Username</label>
-                    <input type="text" class="form-control" placeholder="Username" required>
+                    <label for="username" class="label" for="name">Username</label>
+                    <input type="text" class="form-control" id="username" name="username"  placeholder="Username" required>
                 </div>
                 <div class="form-group">
-                    <label class="label" for="name">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" required>
+                    <label class="label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                 </div>
+
                 <div class="form-group">
-                    <label class="label" for="name">Type User</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Select User Type</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Manager</option>
-                </select>
+                    <label for="typeuser" class="label" >Type User</label>
+                    <select class="form-select" id="typeuser" name="typeuser">
+                        <option value="">Select User Type</option>
+                        <?php
+                        while($row = $INSTRUCAO->fetch()) {
+                            ?>
+                            <option value="<?php echo $row['id'];?>"><?php echo $row['description'];?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div>
-                    <button class="button_login">Register</button>
+                    <button class="button_login" type="submit">Register</button>
                 </div>
             </form>
         </div>
