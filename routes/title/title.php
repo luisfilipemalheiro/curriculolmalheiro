@@ -2,6 +2,11 @@
 require_once '../menu.php';
 ?>
 
+<script>
+    function marcelo() {
+        $('#myModal').modal('show')
+    }
+</script>
 
 <html>
 
@@ -37,7 +42,7 @@ require_once '../menu.php';
         <?php
         while($row = $INSTRUCAO->fetch()) {
         ?>
-        <tr>
+        <tr ondblclick="marcelo()">
             <td><?php echo $row['firstname'];?></td>
             <td><?php echo $row['lastname'];?></td>
             <td><?php echo $row['description'];?></td>
@@ -54,7 +59,7 @@ require_once '../menu.php';
 
 
 
-<div class="modal" [(visible)]="dialog" tabindex="-1" role="dialog">
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
