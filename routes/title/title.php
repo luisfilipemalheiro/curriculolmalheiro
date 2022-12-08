@@ -3,9 +3,20 @@ require_once '../menu.php';
 ?>
 
 <script>
-    function marcelo() {
+
+    function openmodal() {
         $('#myModal').modal('show')
     }
+    $(document).ready(function(){
+        // Open modal on page load
+        $("#myModal").modal('show');
+
+        // Close modal on button click
+        $(".btn").click(function(){
+            $("#myModal").modal('hide');
+        });
+    });
+
 </script>
 
 <html>
@@ -42,7 +53,7 @@ require_once '../menu.php';
         <?php
         while($row = $INSTRUCAO->fetch()) {
         ?>
-        <tr ondblclick="marcelo()">
+        <tr ondblclick="openmodal()">
             <td><?php echo $row['firstname'];?></td>
             <td><?php echo $row['lastname'];?></td>
             <td><?php echo $row['description'];?></td>

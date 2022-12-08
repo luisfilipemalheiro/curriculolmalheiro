@@ -9,7 +9,7 @@ require_once '../menu.php';
                 <img src="../../images/smile.png" alt="Girl in a jacket" width="60" height="60">
                 <h1 class="card-title" style="margin-top: -60px; margin-left: 185px">5</h1>
             </div>
-            <p class="card-text">Number visitores in your website</p>
+            <p style="margin-top: 20px" class="card-text">Number visitores in your website</p>
         </div>
     </div>
 </section>
