@@ -10,6 +10,7 @@ $pdo = pdo_connect_mysql();
 
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
+$typeuser = null;
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["username"]))){
@@ -27,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if(empty($username_err) && empty($password_err)){
-        $sql = "SELECT id, username, password FROM users WHERE username = :username";
+        $sql = "SELECT id, username, password, typeuser FROM users WHERE username = :username";
 
         if($stmt = $pdo->prepare($sql)){
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
@@ -38,6 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if($row = $stmt->fetch()){
                         $id = $row["id"];
                         $username = $row["username"];
+                        $typeuser = $row["typeuser"];
                         $hashed_password = $row["password"];
                         if(password_verify($password, $hashed_password)){
                             session_start();
@@ -45,6 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
+                            $_SESSION["typeuser"] = $typeuser;
 
                             echo '<script type="text/javascript">jsFunction();</script>';
                             header("location: ../curriculolmalheiro/routes/home/home.php");

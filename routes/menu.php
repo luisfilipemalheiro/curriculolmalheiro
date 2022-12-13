@@ -14,11 +14,12 @@
 <?php
 session_start();
 $username = $_SESSION["username"];
+$typeuser = $_SESSION["typeuser"];
 ?>
 
 <nav class="navbar bg-light fixed-top">
     <div class="container-fluid">
-        <a style="margin-left: 20px" class="navbar-brand" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bem vindo <?php echo $username ?></font></font></a>
+        <a style="margin-left: 20px" class="navbar-brand" href="../home/home.php"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bem vindo <?php echo $username ?></font></font></a>
         <button style="margin-right: 20px; margin-top: 5px" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,6 +33,9 @@ $username = $_SESSION["username"];
                     <li class="nav-item" style="margin-bottom: 5px">
                         <a class="nav-link active" aria-current="page" href="../home/home.php"><font style="vertical-align: inherit;"><i class="fa">&#xf015;</i><font style="vertical-align: inherit;"> Home</font></font></a>
                     </li>
+                    <?php
+                    if($typeuser == 1){
+                    ?>
                     <li class="nav-item" style="margin-bottom: 5px">
                         <a class="nav-link active" aria-current="page" href="../title/title.php"><font style="vertical-align: inherit;"><i class="fa">&#xf2bc;</i><font style="vertical-align: inherit;"> Title</font></font></a>
                     </li>
@@ -50,6 +54,9 @@ $username = $_SESSION["username"];
                     <li class="nav-item" style="margin-bottom: 5px">
                         <a class="nav-link active" aria-current="page" href="#"><font style="vertical-align: inherit;"><i class="fa">&#xf19d;</i><font style="vertical-align: inherit;"> School</font></font></a>
                     </li>
+                    <?php
+                    }
+                    ?>
                     <li class="nav-item" style="margin-bottom: 5px">
                         <a class="nav-link active" aria-current="page" href="../logout.php"><font style="vertical-align: inherit;"><i class="fa">&#xf08b;</i><font style="vertical-align: inherit;"> Log Out</font></font></a>
                     </li>

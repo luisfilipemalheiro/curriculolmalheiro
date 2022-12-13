@@ -16,8 +16,6 @@ $SQL->setFetchMode(PDO::FETCH_ASSOC);
 
 while($row = $SQL->fetch()) {
 
-
-
 ?>
 <section>
     <div class="row">
