@@ -8,19 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
+<?php
+require_once('connectionBD/connect.php');
+$SQL = $LIGACAO->query('SELECT firstname, lastname, imagepath, description FROM aboutme');
+$SQL->setFetchMode(PDO::FETCH_ASSOC);
+
+while($row = $SQL->fetch()) {
+
+
+
+?>
 <section>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <img class="imagem" src="../curriculolmalheiro/images/fotoperfil.jpeg" alt="foto de perfil Luís Malheiro">
+            <img class="imagem" src="<?php echo $row['imagepath'];?>" alt="foto de perfil Luís Malheiro">
         </div>
         <div class="col-12 col-lg-6">
-            <h1>Luís Malheiro</h1>
+            <h1><?php echo $row['firstname'];?> <?php echo $row['lastname'];?></h1>
             <div class="descricao">
-                <h5>Luís Filipe Correia Malheiro, 20 anos (15/09/2001), natural de Refóios do Lima - Ponte de Lima.</h5>
+                <h5><?php echo $row['description'];?></h5>
             </div>
         </div>
     </div>
 </section>
+
+<?php
+}
+?>
 <section>
     <hr class="linha">
     <div class="row">

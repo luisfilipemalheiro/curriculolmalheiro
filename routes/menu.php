@@ -11,11 +11,14 @@
 </head>
 <body class="p-3 m-0 border-0 bd-example">
 
-<!-- Example Code -->
+<?php
+session_start();
+$username = $_SESSION["username"];
+?>
 
 <nav class="navbar bg-light fixed-top">
     <div class="container-fluid">
-        <a style="margin-left: 20px" class="navbar-brand" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bem vindo</font></font></a>
+        <a style="margin-left: 20px" class="navbar-brand" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bem vindo <?php echo $username ?></font></font></a>
         <button style="margin-right: 20px; margin-top: 5px" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>

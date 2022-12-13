@@ -1,28 +1,53 @@
 <h2>Contactos</h2>
+
+
+<?php
+require_once('connectionBD/connect.php');
+$CONTACTOS = $LIGACAO->query('SELECT id, telephone, email from contacts');
+$CONTACTOS->setFetchMode(PDO::FETCH_ASSOC);
+
+$SOFTSKILLS = $LIGACAO->query('SELECT id, descricao from softskills');
+$SOFTSKILLS->setFetchMode(PDO::FETCH_ASSOC);
+
+$HARDSKILLS = $LIGACAO->query('SELECT id, descricao from hardskills');
+$HARDSKILLS->setFetchMode(PDO::FETCH_ASSOC);
+
+?>
+
+<?php
+while($row = $CONTACTOS->fetch()) {
+?>
 <div class="icons">
-    <i class="fa">&#xf0e0; <a href="mailto:ismalheiro1@gmail.com"> ismalheiro1@gmail.com</a></i>
+    <i class="fa">&#xf0e0; <a href="mailto:ismalheiro1@gmail.com">  <?php echo $row['email'];?></a></i>
     <div>
-        <i class="fa">&#xf095; <a href="tel:00351925998153"> 925998153</a></i>
+        <i class="fa">&#xf095; <a href="tel:00351925998153"> <?php echo $row['telephone'];?></a></i>
     </div>
 </div>
+    <?php
+}
+?>
+
+
+
 <h2>Soft Skills</h2>
 <div>
-    <p><b>Comunicação</b></p>
-    <p><b>Espirito de Equipa</b></p>
-    <p><b>Paixão</b></p>
-    <p><b>Ética</b></p>
-    <p><b>Personalidade</b></p>
-    <p><b>Responsabilidade</b></p>
+    <?php
+    while($row = $SOFTSKILLS->fetch()) {
+    ?>
+    <p><b><?php echo $row['descricao'];?></b></p>
+        <?php
+    }
+    ?>
 </div>
+
+
 <h2>Hard Skills</h2>
 <div>
-    <p><b>Java</b></p>
-    <p><b>HTML</b></p>
-    <p><b>CSS</b></p>
-    <p><b>Administrador de Base de Dados</b></p>
-    <p><b>C</b></p>
-    <p><b>C#</b></p>
-    <p><b>Redes de computadores</b></p>
-    <p><b>Angular</b></p>
-    <p><b>Ionic</b></p>
+    <?php
+    while($row = $HARDSKILLS->fetch()) {
+        ?>
+        <p><b><?php echo $row['descricao'];?></b></p>
+        <?php
+    }
+    ?>
 </div>
