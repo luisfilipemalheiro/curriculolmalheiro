@@ -17,7 +17,7 @@ require_once '../menu.php';
     <div class="card" style="margin-bottom: 30px">
         <div class="card-header">
             <div class="title" style="font-family: Courier New, monospace; font-size: 20px">
-                Contacts
+                Soft Skills
             </div>
         </div>
     </div>
@@ -25,32 +25,21 @@ require_once '../menu.php';
     <?php
     require_once('../../connectionBD/connect.php');
     # podemos utilizar diretamente o método ->query() uma vez que, ainda, não estamos a utilizar varíaveis na instrução SQL
-    $INSTRUCAO = $LIGACAO->query('SELECT telephone, email from contacts');
+    $INSTRUCAO = $LIGACAO->query('SELECT descricao from softskills');
 
     # definir o fetch mode
     $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
     ?>
 
-    <?php
-    $pdo = pdo_connect_mysql();
-    if(isset($_POST['delete'])){
-        echo 'Hello World';
-        if(isset($_GET['id'])){
-            $stmt = $pdo->prepare('SELECT * FROM contacts WHERE id = ?');
-            $stmt->execute([$_GET['id']]);
-            $stmt = $pdo->prepare('DELETE FROM contacts WHERE id = ?');
-            $stmt->execute([$_GET['id']]);
-        }
-
-    }
-
-    ?>
 
     <table class="table" style="padding: 60px">
+        <caption>
+            <button type="button" onclick="newmodal()" class="btn btn-secondary"><i class="fa">&#xf067;</i>Add</button>
+        </caption>
         <thead class="table-dark">
         <tr>
-            <td>Contact</td>
-            <td>Email</td>
+            <td style="text-align: center">Description</td>
+            <td style="width: 40px"></td>
         </tr>
         </thead>
         <tbody>
@@ -58,12 +47,10 @@ require_once '../menu.php';
         while($row = $INSTRUCAO->fetch()) {
             ?>
             <tr ondblclick="openmodal()">
-                <td><?php echo $row['telephone'];?></td>
-                <td><?php echo $row['email'];?></td>
+                <td><?php echo $row['descricao'];?></td>
+                <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
             </tr>
             <?php
-            $phone = $row['telephone'];
-            $mail = $row['email'];
         }
         ?>
         </tbody>
@@ -83,18 +70,11 @@ require_once '../menu.php';
             <div class="modal-body">
                 <form class="needs-validation" method="post" novalidate>
                     <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <label for="contact">Contact</label>
-                            <input type="text" class="form-control" id="contact" name="contact" placeholder="contact" value="<?php echo $phone;?>" required>
+                        <div class="col-md-12 mb-12">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Update Description" required>
                             <div class="invalid-feedback">
-                                Please insert Image Path
-                            </div>
-                        </div>
-                        <div class="col-md-8 mb-8">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Image Path" value="<?php echo $mail;?>" required>
-                            <div class="invalid-feedback">
-                                Please insert Image Path
+                                Please update description with valid text
                             </div>
                         </div>
                     </div>
@@ -107,6 +87,18 @@ require_once '../menu.php';
         </div>
     </div>
 </div>
+
+
+<?php
+require_once ('addsoftskill.php');
+?>
+
+
+
+
+
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </html>

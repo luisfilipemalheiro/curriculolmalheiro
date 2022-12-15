@@ -40,16 +40,16 @@ $typeuser = $_SESSION["typeuser"];
                         <a class="nav-link active" aria-current="page" href="../title/title.php"><font style="vertical-align: inherit;"><i class="fa">&#xf2bc;</i><font style="vertical-align: inherit;"> Title</font></font></a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 5px">
-                        <a class="nav-link active" aria-current="page" href="#"><font style="vertical-align: inherit;"><i class="fa">&#xf2b9;</i><font style="vertical-align: inherit;"> Contacts</font></font></a>
+                        <a class="nav-link active" aria-current="page" href="../contacts/contacts.php"><font style="vertical-align: inherit;"><i class="fa">&#xf2b9;</i><font style="vertical-align: inherit;"> Contacts</font></font></a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 5px">
-                        <a class="nav-link active" aria-current="page" href="#"><font style="vertical-align: inherit;"><i class="fa">&#xf27a;</i><font style="vertical-align: inherit;"> Soft Skills</font></font></a>
+                        <a class="nav-link active" aria-current="page" href="../softskills/softskills.php"><font style="vertical-align: inherit;"><i class="fa">&#xf27a;</i><font style="vertical-align: inherit;"> Soft Skills</font></font></a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 5px">
-                        <a class="nav-link active" aria-current="page" href="#"><font style="vertical-align: inherit;"><i class="fa">&#xf1c9;</i><font style="vertical-align: inherit;"> Hard Skills</font></font></a>
+                        <a class="nav-link active" aria-current="page" href="../hardskills/hardskills.php"><font style="vertical-align: inherit;"><i class="fa">&#xf1c9;</i><font style="vertical-align: inherit;"> Hard Skills</font></font></a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 5px">
-                        <a class="nav-link active" aria-current="page" href="#"><font style="vertical-align: inherit;"><i class="fa">&#xf108;</i><font style="vertical-align: inherit;"> Experiences</font></font></a>
+                        <a class="nav-link active" aria-current="page" href="../experiences/experiences.php"><font style="vertical-align: inherit;"><i class="fa">&#xf108;</i><font style="vertical-align: inherit;"> Experiences</font></font></a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 5px">
                         <a class="nav-link active" aria-current="page" href="#"><font style="vertical-align: inherit;"><i class="fa">&#xf19d;</i><font style="vertical-align: inherit;"> School</font></font></a>

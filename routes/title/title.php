@@ -41,14 +41,14 @@ require_once '../menu.php';
         <tbody>
         <?php
         while($row = $INSTRUCAO->fetch()) {
-        ?>
-        <tr ondblclick="openmodal()">
-            <td><?php echo $row['firstname'];?></td>
-            <td><?php echo $row['lastname'];?></td>
-            <td><?php echo $row['description'];?></td>
-            <td><?php echo $row['imagepath'];?></td>
+            ?>
+            <tr ondblclick="openmodal()">
+                <td><?php echo $row['firstname'];?></td>
+                <td><?php echo $row['lastname'];?></td>
+                <td><?php echo $row['description'];?></td>
+                <td><?php echo $row['imagepath'];?></td>
 
-        </tr>
+            </tr>
             <?php
         }
         ?>
@@ -138,7 +138,7 @@ if (isset($_GET['id'])) {
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
             </div>
-          </div>
+        </div>
     </div>
 </div>
 
