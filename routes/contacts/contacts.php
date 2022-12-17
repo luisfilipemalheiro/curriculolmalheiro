@@ -67,9 +67,6 @@ require_once '../menu.php';
         }
         ?>
         </tbody>
-        <tfoot>
-
-        </tfoot>
     </table>
 </section>
 
