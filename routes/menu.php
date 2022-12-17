@@ -52,7 +52,7 @@ $typeuser = $_SESSION["typeuser"];
                         <a class="nav-link active" aria-current="page" href="../experiences/experiences.php"><font style="vertical-align: inherit;"><i class="fa">&#xf108;</i><font style="vertical-align: inherit;"> Experiences</font></font></a>
                     </li>
                     <li class="nav-item" style="margin-bottom: 5px">
-                        <a class="nav-link active" aria-current="page" href="#"><font style="vertical-align: inherit;"><i class="fa">&#xf19d;</i><font style="vertical-align: inherit;"> School</font></font></a>
+                        <a class="nav-link active" aria-current="page" href="../school/school.php"><font style="vertical-align: inherit;"><i class="fa">&#xf19d;</i><font style="vertical-align: inherit;"> School</font></font></a>
                     </li>
                     <?php
                     }

@@ -19,4 +19,13 @@ require_once '../menu.php';
 
 
 
+<table>
+    <tr>
+        <td contenteditable>Column 1</td>
+        <td contenteditable>Column 2</td>
+        <td contenteditable>Column 3</td>
+    </tr>
+</table>
+
+<script src="index.js"></script>
 
