@@ -28,7 +28,7 @@ $languages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($languages as $language):
         ?>
 <ul>
-   <li><?php echo $language['descripton'];?></li>
+   <li><?php echo $language['nametask'];?></li>
 </ul>
     <?php endforeach; ?>
     <?php

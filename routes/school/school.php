@@ -30,9 +30,6 @@ require_once '../menu.php';
 
 
     <table class="table" style="padding: 60px">
-        <caption>
-            <button type="button" onclick="newmodal()" class="btn btn-secondary"><i class="fa">&#xf067;</i>Add</button>
-        </caption>
         <thead class="table-dark">
         <tr>
             <td>Description</td>
@@ -55,9 +52,6 @@ require_once '../menu.php';
         }
         ?>
         </tbody>
-        <tfoot>
-
-        </tfoot>
     </table>
 </section>
 
@@ -83,34 +77,6 @@ require_once '../menu.php';
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Update Soft Skill</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="adicionarModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Insert Hard Skill</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="needs-validation" method="post" action="hardskills.php" novalidate>
-                    <div class="row">
-                        <div class="col-md-12 mb-12">
-                            <label for="descricao">Description</label>
-                            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Insert Description" required>
-                            <div class="invalid-feedback">
-                                Please insert description with valid text
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Insert Soft Skill</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

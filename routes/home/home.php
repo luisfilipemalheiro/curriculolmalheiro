@@ -3,6 +3,8 @@ require_once '../menu.php';
 ?>
 
 <section style="padding: 80px">
+    <div class="row">
+        <div class="col-1">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <div>
@@ -12,11 +14,65 @@ require_once '../menu.php';
             <p style="margin-top: 20px" class="card-text">Number visitores in your website</p>
         </div>
     </div>
+        </div>
+    </div>
 </section>
 
 
-<h1>COLOCAR INFORAMACOES DE CONTACTOS</h1>
 
+<section style="padding: 40px">
+    <div class="card" style="margin-bottom: 30px">
+        <div class="card-header">
+            <div class="title" style="font-family: Courier New, monospace; font-size: 20px">
+                Messages
+            </div>
+        </div>
+    </div>
+
+    <?php
+    require_once('../../connectionBD/connect.php');
+    $INSTRUCAO = $LIGACAO->query('SELECT id, name, email, message from messages');
+    $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
+    ?>
+
+    <table class="table" style="padding: 60px">
+        <thead class="table-dark">
+        <tr>
+            <td>#</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td style="width: 40px"></td>
+        </tr>
+        </thead>
+        <tbody>
+    <?php
+    while($row = $INSTRUCAO->fetch()) {
+        ?>
+        <tr>
+            <td>
+                <details>
+                    <summary><?php echo $row['id'];?></summary>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <th>teste</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </details>
+            </td>
+            <td><?php echo $row['name'];?></td>
+            <td><?php echo $row['email'];?></td>
+            <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
+        </tr>
+        </tbody>
+        <?php
+    }
+    ?>
+    </table>
+</section>
 
 
 <table>
@@ -26,6 +82,10 @@ require_once '../menu.php';
         <td contenteditable>Column 3</td>
     </tr>
 </table>
+
+
+
+
 
 <script src="index.js"></script>
 

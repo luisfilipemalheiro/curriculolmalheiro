@@ -9,6 +9,9 @@ require_once '../menu.php';
     function newmodal() {
         $('#adicionarModal').modal('show')
     }
+    function eliminar() {
+        $('#eliminar').modal('show')
+    }
 </script>
 
 <html>
@@ -48,8 +51,27 @@ require_once '../menu.php';
             ?>
             <tr ondblclick="openmodal()">
                 <td><?php echo $row['descricao'];?></td>
-                <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
+                <td><button type="button" value="<?php $row['id']?>" onclick="eliminar()" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
             </tr>
+
+            <div class="modal" id="eliminar">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete Hard Skills</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <?php
         }
         ?>
@@ -59,6 +81,15 @@ require_once '../menu.php';
         </tfoot>
     </table>
 </section>
+
+
+
+
+
+
+
+
+
 
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg">
@@ -96,6 +127,23 @@ require_once '../menu.php';
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <?php
+                require_once('../../connectionBD/connect.php');
+                $pdo = pdo_connect_mysql();
+                $msg = '';
+
+
+                if (!empty($_POST)) {
+
+
+                    $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
+
+                    $stmt = $pdo->prepare('INSERT INTO hardskills (idaboutme, descricao) VALUES (?, ?)');
+                    $stmt->execute([1, $descricao]);
+
+                    $msg = 'Created Successfully!';
+                }
+                ?>
                 <form class="needs-validation" method="post" action="hardskills.php" novalidate>
                     <div class="row">
                         <div class="col-md-12 mb-12">
@@ -106,12 +154,12 @@ require_once '../menu.php';
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Insert Soft Skill</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

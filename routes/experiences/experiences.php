@@ -6,9 +6,6 @@ require_once '../menu.php';
     function openmodal() {
         $('#myModal').modal('show')
     }
-    function newmodal() {
-        $('#adicionarModal').modal('show')
-    }
 </script>
 
 <html>
@@ -32,6 +29,9 @@ require_once '../menu.php';
     ?>
 
     <table class="table" style="padding: 60px">
+        <caption>
+            <button type="button" onclick="openmodal()" class="btn btn-secondary"><i class="fa">&#xf067;</i>Add</button>
+        </caption>
         <thead class="table-dark">
         <tr>
             <td></td>
@@ -69,7 +69,7 @@ require_once '../menu.php';
                                 ?>
                             <tr>
                                 <th scope="row"><?php echo $language['id'];?></th>
-                                <td><?php echo $language['descripton'];?></td>
+                                <td><?php echo $language['nametask'];?></td>
                                 <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
                             </tr>
                             <?php endforeach;?>
@@ -89,40 +89,84 @@ require_once '../menu.php';
     </table>
 </section>
 
+<?php
+require_once('../../connectionBD/connect.php');
+$pdo = pdo_connect_mysql();
+$msg = '';
+if (!empty($_POST)) {
+    $title = isset($_POST['title']) ? $_POST['title'] : '';
+    $descripton = isset($_POST['descripton']) ? $_POST['descripton'] : '';
+
+    $stmt = $pdo->prepare('INSERT INTO experience (idaboutme, title, descripton) VALUES (?, ?, ?)');
+    $stmt->execute([1, $title, $descripton]);
+    $error = 'ERROR!! Please insert data';
+
+
+    $dados = array();
+    $INSTRUCAO = $LIGACAO->prepare("SELECT id, title, descripton FROM experience WHERE title = '$title'");
+    $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
+    $INSTRUCAO->execute($dados);
+}
+?>
+
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Soft Skills</h5>
+                <h5 class="modal-title">Insert new Expirence</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" method="post" novalidate>
+                <form class="needs-validation" method="post" action="experiences.php" novalidate id="myForm">
                     <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <label for="contact">Contact</label>
-                            <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact" value="<?php echo $phone;?>" required>
+                        <div class="col-md-6 mb-6">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Insert Title" required>
                             <div class="invalid-feedback">
-                                Please insert Image Path
+                                Please update description with valid text
                             </div>
                         </div>
-                        <div class="col-md-8 mb-8">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Image Path" value="<?php echo $mail;?>" required>
+
+                        <div class="col-md-6 mb-6">
+                            <label for="descripton">Descripton</label>
+                            <input type="text" class="form-control" id="descripton" name="descripton" placeholder="Insert Description" required>
                             <div class="invalid-feedback">
-                                Please insert Image Path
+                                Please update description with valid text
                             </div>
                         </div>
+
+
+                        <div class="col-md-12 mb-12" style="margin-top: 10px">
+                            <button type="button" onclick="addRow()" name="newtask" class="btn btn-warning"><i class="fa">&#xf067;</i>New Task</button>
+                        </div>
+
+
+                        <div class="col-md-12 mb-12" id="myTable">
+                            <label for="nametask">Tasks</label>
+                            <input type="text" class="form-control" id="nametask" name="nametask" placeholder="Insert Task" required>
+                            <div class="invalid-feedback">
+                                Please update description with valid text
+                            </div>
+                        </div>
+                            <?php
+                            while ($row = $INSTRUCAO->fetch()) {
+                                $nametask = isset($_POST['nametask']) ? $_POST['nametask'] : '';
+                                $stmt = $pdo->prepare('INSERT INTO tasks (nametask, idexpirence) VALUES (?, ?)');
+                                $stmt->execute([$nametask, $row['id']]);
+                                $error = 'ERROR!! Please insert data';
+                        }
+                        ?>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update Soft Skill</button>
+                <button type="submit" class="btn btn-primary">Insert Expirence</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
 
+<script src="expirences.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </html>
