@@ -8,6 +8,7 @@ create table aboutme
     imagepath   varchar(300) null
 );
 
+
 create table contactme
 (
     id        int auto_increment
