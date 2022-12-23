@@ -10,7 +10,7 @@ create table aboutme
 
 create table contactme
 (
-    id        int          not null
+    id        int auto_increment
         primary key,
     idaboutme int          not null,
     name      varchar(80)  null,
@@ -25,7 +25,7 @@ create index idaboutme
 
 create table contacts
 (
-    id        int          not null
+    id        int auto_increment
         primary key,
     idaboutme int          not null,
     telephone decimal(9)   null,
@@ -53,7 +53,7 @@ create index idaboutme
 
 create table hardskills
 (
-    id        int         not null
+    id        int auto_increment
         primary key,
     idaboutme int         not null,
     descricao varchar(50) null,
@@ -73,7 +73,7 @@ create table rolesuser
 
 create table scholl
 (
-    id        int         not null
+    id        int auto_increment
         primary key,
     idaboutme int         not null,
     descricao varchar(70) null,
@@ -88,7 +88,7 @@ create index idaboutme
 
 create table softskills
 (
-    id        int         not null
+    id        int auto_increment
         primary key,
     idaboutme int         not null,
     descricao varchar(50) null,
@@ -101,7 +101,7 @@ create index idaboutme
 
 create table tasks
 (
-    id          int         not null
+    id          int auto_increment
         primary key,
     descripton  varchar(70) null,
     idexpirence int         not null,
@@ -114,7 +114,7 @@ create index idexpirence
 
 create table users
 (
-    id        int          not null
+    id        int auto_increment
         primary key,
     typeuser  int          not null,
     idaboutme int          not null,
@@ -132,4 +132,3 @@ create index idaboutme
 
 create index typeuser
     on users (typeuser);
-
