@@ -148,13 +148,21 @@ if (!empty($_POST)) {
                                 Please update description with valid text
                             </div>
                         </div>
+                        <div class="col-md-12 mb-12" id="myTable">
+                            <label for="nametask">Tasks</label>
+                            <input type="text" class="form-control" id="nametask" name="nametask" placeholder="Insert Task" required>
+                            <div class="invalid-feedback">
+                                Please update description with valid text
+                            </div>
+                        </div>
+
                             <?php
                             while ($row = $INSTRUCAO->fetch()) {
                                 $nametask = isset($_POST['nametask']) ? $_POST['nametask'] : '';
                                 $stmt = $pdo->prepare('INSERT INTO tasks (nametask, idexpirence) VALUES (?, ?)');
                                 $stmt->execute([$nametask, $row['id']]);
                                 $error = 'ERROR!! Please insert data';
-                        }
+                            }
                         ?>
                     </div>
             </div>

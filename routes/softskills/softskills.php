@@ -4,7 +4,7 @@ require_once '../menu.php';
 
 <script>
     function openmodal() {
-        $('#eliminar').modal('show')
+        $('#delete').modal('show')
     }
     function newmodal() {
         $('#adicionarModal').modal('show')
