@@ -34,6 +34,11 @@ require_once '../menu.php';
     $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
     ?>
 
+    <?php
+    $INSTRUCAO = $LIGACAO->query('SELECT * from hardskills');
+    $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
+    ?>
+
 
     <table class="table" style="padding: 60px">
         <caption>
@@ -51,7 +56,9 @@ require_once '../menu.php';
             ?>
             <tr ondblclick="openmodal()">
                 <td><?php echo $row['descricao'];?></td>
-                <td><button type="button" value="<?php $row['id']?>" onclick="eliminar()" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
+                <td class="actions">
+                    <a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a>
+                </td>
             </tr>
 
             <div class="modal" id="eliminar">
@@ -83,14 +90,6 @@ require_once '../menu.php';
 </section>
 
 
-
-
-
-
-
-
-
-
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -112,7 +111,7 @@ require_once '../menu.php';
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update Soft Skill</button>
+                <button type="submit" class="btn btn-primary">Update Hard Skill</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -156,7 +155,7 @@ require_once '../menu.php';
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Insert Soft Skill</button>
+                <button type="submit" class="btn btn-primary">Insert Hard Skill</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
             </form>

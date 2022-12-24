@@ -26,6 +26,11 @@ require_once '../menu.php';
 
     # definir o fetch mode
     $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
+
+
+    $SQL = $LIGACAO->query('SELECT * from tasks');
+    $SQL->setFetchMode(PDO::FETCH_ASSOC);
+
     ?>
 
     <table class="table" style="padding: 60px">
@@ -68,9 +73,9 @@ require_once '../menu.php';
                             foreach ($languages as $language):
                                 ?>
                             <tr>
-                                <th scope="row"><?php echo $language['id'];?></th>
+                                <th scope="row"><?php echo $language['id'] ;?></th>
                                 <td><?php echo $language['nametask'];?></td>
-                                <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
+                                <td><a href="deletetask.php?id=<?=$language['id']?>" class="trash"><i class="fa">&#xf014;</i></a></td>
                             </tr>
                             <?php endforeach;?>
                             </tbody>
@@ -80,7 +85,7 @@ require_once '../menu.php';
                 </td>
                 <td><?php echo $row['title'];?></td>
                 <td><?php echo $row['descripton'];?></td>
-                <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
+                <td><a href="deletexperience.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a></td>
             </tr>
         </tbody>
         <?php

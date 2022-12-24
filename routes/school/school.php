@@ -24,7 +24,7 @@ require_once '../menu.php';
 
     <?php
     require_once('../../connectionBD/connect.php');
-    $INSTRUCAO = $LIGACAO->query('SELECT description, startyear, endyear from scholl');
+    $INSTRUCAO = $LIGACAO->query('SELECT id, description, startyear, endyear from scholl');
     $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
     ?>
 
@@ -46,7 +46,9 @@ require_once '../menu.php';
                 <td><?php echo $row['description'];?></td>
                 <td><?php echo $row['startyear'];?></td>
                 <td><?php echo $row['endyear'];?></td>
-                <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
+                <td class="actions">
+                    <a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a>
+                </td>
             </tr>
             <?php
         }

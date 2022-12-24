@@ -11,20 +11,20 @@ require_once('../../connectionBD/connect.php');
 $pdo = pdo_connect_mysql();
 $msg = '';
 if (isset($_GET['id'])) {
-    $stmt = $pdo->prepare('SELECT * FROM softskills WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM scholl WHERE id = ?');
     $stmt->execute([$_GET['id']]);
-    $softskill = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$softskill) {
-        exit('Soft skill doesn\'t exist with that ID!');
+    $scholl = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$scholl) {
+        exit('scholl doesn\'t exist with that ID!');
     }
     if (isset($_GET['confirm'])) {
         if ($_GET['confirm'] == 'yes') {
-            $stmt = $pdo->prepare('DELETE FROM softskills WHERE id = ?');
+            $stmt = $pdo->prepare('DELETE FROM scholl WHERE id = ?');
             $stmt->execute([$_GET['id']]);
-            $msg = 'You have deleted the soft skill!';
-            header('Location: softskills.php');
+            $msg = 'You have deleted the scholl!';
+            header('Location: school.php');
         } else {
-            header('Location: softskills.php');
+            header('Location: school.php');
             exit;
         }
     }
@@ -39,13 +39,13 @@ if (isset($_GET['id'])) {
             <div class="col col-xl-7">
                 <div class="card">
                     <div class="card-header">
-                        Delete Soft Skill
+                        Delete scholl
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Are you sure you want to delete Soft skill #<?=$softskill['id']?>?</h5>
+                        <h5 class="card-title">Are you sure you want to delete scholl #<?=$scholl['id']?>?</h5>
                         <p class="card-text"></p>
-                        <a href="delete.php?id=<?=$softskill['id']?>&confirm=yes" style="width: 80px" class="btn btn-danger">Yes</a>
-                        <a href="delete.php?id=<?=$softskill['id']?>&confirm=no" style="width: 80px" class="btn btn-secondary">No</a>
+                        <a href="delete.php?id=<?=$scholl['id']?>&confirm=yes" style="width: 80px" class="btn btn-danger">Yes</a>
+                        <a href="delete.php?id=<?=$scholl['id']?>&confirm=no" style="width: 80px" class="btn btn-secondary">No</a>
                     </div>
                 </div>
             </div>

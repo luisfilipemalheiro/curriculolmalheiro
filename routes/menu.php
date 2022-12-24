@@ -12,7 +12,6 @@
 <body class="p-3 m-0 border-0 bd-example">
 
 <?php
-session_start();
 $username = $_SESSION["username"];
 $typeuser = $_SESSION["typeuser"];
 ?>

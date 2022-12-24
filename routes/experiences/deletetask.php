@@ -11,20 +11,20 @@ require_once('../../connectionBD/connect.php');
 $pdo = pdo_connect_mysql();
 $msg = '';
 if (isset($_GET['id'])) {
-    $stmt = $pdo->prepare('SELECT * FROM softskills WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM tasks WHERE id = ?');
     $stmt->execute([$_GET['id']]);
-    $softskill = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$softskill) {
-        exit('Soft skill doesn\'t exist with that ID!');
+    $task = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$task) {
+        exit('Task doesn\'t exist with that ID!');
     }
     if (isset($_GET['confirm'])) {
         if ($_GET['confirm'] == 'yes') {
-            $stmt = $pdo->prepare('DELETE FROM softskills WHERE id = ?');
+            $stmt = $pdo->prepare('DELETE FROM tasks WHERE id = ?');
             $stmt->execute([$_GET['id']]);
-            $msg = 'You have deleted the soft skill!';
-            header('Location: softskills.php');
+            $msg = 'You have deleted the Task!';
+            header('Location: experiences.php');
         } else {
-            header('Location: softskills.php');
+            header('Location: experiences.php');
             exit;
         }
     }
@@ -39,13 +39,13 @@ if (isset($_GET['id'])) {
             <div class="col col-xl-7">
                 <div class="card">
                     <div class="card-header">
-                        Delete Soft Skill
+                        Delete Task
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Are you sure you want to delete Soft skill #<?=$softskill['id']?>?</h5>
+                        <h5 class="card-title">Are you sure you want to delete Task #<?=$task['id']?>?</h5>
                         <p class="card-text"></p>
-                        <a href="delete.php?id=<?=$softskill['id']?>&confirm=yes" style="width: 80px" class="btn btn-danger">Yes</a>
-                        <a href="delete.php?id=<?=$softskill['id']?>&confirm=no" style="width: 80px" class="btn btn-secondary">No</a>
+                        <a href="deletetask.php?id=<?=$task['id']?>&confirm=yes" style="width: 80px" class="btn btn-danger">Yes</a>
+                        <a href="deletetask.php?id=<?=$task['id']?>&confirm=no" style="width: 80px" class="btn btn-secondary">No</a>
                     </div>
                 </div>
             </div>

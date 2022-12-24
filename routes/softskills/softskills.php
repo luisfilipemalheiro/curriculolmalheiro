@@ -54,7 +54,7 @@ require_once '../menu.php';
             <tr ondblclick="openmodal()">
                 <td><?php echo $row['descricao'];?></td>
                 <td class="actions">
-                    <button class="btn btn-danger"><a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a></button>
+                    <a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a>
                 </td>
             </tr>
             <?php
