@@ -55,8 +55,7 @@ require_once '../menu.php';
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <th>teste</th>
+                                <th><?php echo $row['message'];?></th>
                             </tr>
                         </tbody>
                     </table>

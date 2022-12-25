@@ -61,7 +61,7 @@ while($row = $SQL->fetch()) {
                 <input type="text" class="form-control" id="email" name="email" placeholder="Email:" required>
             </div>
             <textarea class="form-control" id="message" name="message" placeholder="Message:" rows="3" required></textarea>
-            <button type="submit"  class="btn btn-primary" style="margin-top: 15px">Submit</button>
+            <button type="submit" onclick="opentoast()" class="btn btn-primary" style="margin-top: 15px">Submit</button>
         </form>
     </div>
 </div>
