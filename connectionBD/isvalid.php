@@ -7,12 +7,9 @@ function pdo_connect_mysql(){
     $DATABASE_NAME = 'curriculoluis';
 
     try{
-        $pdo = new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME. ';charset=utf8',
-        $DATABASE_USER, $DATABASE_PASS);
-
-        echo "connected";
+        return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME. ';charset=utf8',
+            $DATABASE_USER, $DATABASE_PASS);
     } catch (PDOException $exception){
-        echo "failed";
         exit('Failed to connect to database');
     }
 }

@@ -53,19 +53,21 @@ while($row = $SQL->fetch()) {
 </section>
 
 <h4>Contactar</h4>
-
 <div class="row">
     <div class="col-12">
-        <form class="formulario">
+        <form class="formulario" method="post" action="curriculo/contactme.php" novalidate>
             <div class="label">
-                <input type="text" class="form-control" placeholder="Nome:">
-                <input type="text" class="form-control" placeholder="Email:">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name:" required>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email:" required>
             </div>
-            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message:" rows="3"></textarea>
-            <button class="button">Submit</button>
+            <textarea class="form-control" id="message" name="message" placeholder="Message:" rows="3" required></textarea>
+            <button type="submit"  class="btn btn-primary" style="margin-top: 15px">Submit</button>
         </form>
     </div>
 </div>
+<?php
+require_once 'contactme.php';
+?>
 
 <div class="col-12">
     <?php

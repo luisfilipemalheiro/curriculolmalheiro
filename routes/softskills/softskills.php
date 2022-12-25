@@ -24,14 +24,6 @@ require_once '../menu.php';
 
     <?php
     require_once('../../connectionBD/connect.php');
-    # podemos utilizar diretamente o método ->query() uma vez que, ainda, não estamos a utilizar varíaveis na instrução SQL
-    $INSTRUCAO = $LIGACAO->query('SELECT descricao from softskills');
-
-    # definir o fetch mode
-    $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
-    ?>
-
-    <?php
     $INSTRUCAO = $LIGACAO->query('SELECT * from softskills');
     $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
     ?>

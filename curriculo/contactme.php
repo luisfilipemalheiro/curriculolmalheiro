@@ -1,9 +1,34 @@
+<?php
 
-<form class="form">
-    <div class="label">
-        <input type="text" class="form-control" placeholder="Nome:">
-        <input type="text" class="form-control" placeholder="Email:">
-    </div>
-    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message:" rows="3"></textarea>
-    <button class="button">Submit</button>
-</form>
+function pdo(){
+    $DATABASE_HOST = 'localhost';
+    $DATABASE_USER = 'root';
+    $DATABASE_PASS = '';
+    $DATABASE_NAME = 'curriculoluis';
+
+    try{
+        return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME. ';charset=utf8',
+            $DATABASE_USER, $DATABASE_PASS);
+    } catch (PDOException $exception){
+        exit('Failed to connect to database');
+    }
+}
+$msg = '';
+
+
+$pdo = pdo();
+
+if (!empty($_POST)) {
+
+
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $message = isset($_POST['message']) ? $_POST['message'] : '';
+
+    $stmt = $pdo->prepare('INSERT INTO messages (name, idaboutme, email, message) VALUES (?, ?, ?, ?)');
+    $stmt->execute([$name, 1, $email, $message]);
+
+    $msg = 'Created Successfully!';
+    echo $msg;
+}
+?>
