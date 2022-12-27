@@ -14,8 +14,6 @@ function pdo(){
     }
 }
 $msg = '';
-
-
 $pdo = pdo();
 
 if (!empty($_POST)) {
