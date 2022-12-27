@@ -2,6 +2,13 @@
 require_once '../menu.php';
 ?>
 
+
+<?php
+require_once('../../connectionBD/connect.php');
+$SLQ = $LIGACAO->query('SELECT numberusers from aboutme');
+$SLQ->setFetchMode(PDO::FETCH_ASSOC);
+$row = $SLQ->fetch()
+?>
 <section style="padding: 80px">
     <div class="row">
         <div class="col-1">
@@ -9,7 +16,7 @@ require_once '../menu.php';
         <div class="card-body">
             <div>
                 <img src="../../images/smile.png" alt="Girl in a jacket" width="60" height="60">
-                <h1 class="card-title" style="margin-top: -60px; margin-left: 185px">5</h1>
+                <h1 class="card-title" style="margin-top: -60px; margin-left: 185px"><?php echo $row['numberusers'];?></h1>
             </div>
             <p style="margin-top: 20px" class="card-text">Number visitores in your website</p>
         </div>
@@ -64,7 +71,7 @@ require_once '../menu.php';
             </td>
             <td><?php echo $row['name'];?></td>
             <td><?php echo $row['email'];?></td>
-            <td><button type="button" class="btn btn-danger"><i class="fa">&#xf014;</i></button></td>
+            <td><a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a></td>
         </tr>
         </tbody>
         <?php

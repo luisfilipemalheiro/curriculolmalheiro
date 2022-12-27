@@ -49,6 +49,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["typeuser"] = $typeuser;
 
                             echo '<script type="text/javascript">jsFunction();</script>';
+                            $stmt = $pdo->prepare('SELECT numberusers from aboutme');
+                            $stmt->execute();
+                            $experience = $stmt->fetch(PDO::FETCH_ASSOC);
+                            $aux =$experience['numberusers'] + 1;
+                            $stmt = $pdo->prepare('UPDATE aboutme SET numberusers = ? where id = 1');
+                            $stmt->execute([$aux]);
                             header("location: ../curriculolmalheiro/routes/home/home.php");
                         }
                         else{
