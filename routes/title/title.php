@@ -2,7 +2,7 @@
 require_once '../menu.php';
 ?>
 
-<script>
+<script xmlns="http://www.w3.org/1999/html">
     function openmodal() {
         $('#myModal').modal('show')
     }
@@ -50,29 +50,16 @@ require_once '../menu.php';
 
             </tr>
             <?php
+            $id = $row['id'];
+            $name = $row['firstname'];
+            $lastname = $row['lastname'];
+            $descripton = $row['description'];
+            $imagepath = $row['imagepath'];
         }
         ?>
         </tbody>
     </table>
 </section>
-
-
-<?php
-require_once('../../connectionBD/connect.php');
-if (isset($_GET['id'])) {
-    $dados = array($_GET['id']);
-    echo $dados[0];
-    $INSTRUCAO = $LIGACAO->prepare('SELECT firstname, lastname, description, imagepath FROM aboutme');
-    $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
-    $INSTRUCAO->execute($dados);
-    $rowLivro = $INSTRUCAO->fetch();
-    $numero_registos = $INSTRUCAO->rowCount();
-    $dados = array();
-} else {
-    $numero_registos = 0;
-}
-?>
-
 
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg">
@@ -82,28 +69,25 @@ if (isset($_GET['id'])) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?php
-                if ($numero_registos > 0) {
-                ?>
-                <form class="needs-validation" method="post" action="title_DB.php" novalidate>
+                <form class="needs-validation" method="post" novalidate>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" value="<?php echo $rowLivro['firstname']?>" required>
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
                             <div class="invalid-feedback">
                                 Please insert First Name
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $rowLivro['lastname']?>" required>
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required>
                             <div class="invalid-feedback">
                                 Please insert Last Name
                             </div>
                         </div>
                         <div class="col-md-6 mb-6">
                             <label for="imagepath">Image Path</label>
-                            <input type="text" class="form-control" id="imagepath" name="imagepath" placeholder="Image Path" value="<?php echo $rowLivro['imagepath']?>" required>
+                            <input type="text" class="form-control" id="imagepath" name="imagepath" placeholder="Image Path" required>
                             <div class="invalid-feedback">
                                 Please insert Image Path
                             </div>
@@ -112,7 +96,7 @@ if (isset($_GET['id'])) {
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <label for="description">About Luís Malheiro</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="About Luís Malheiro" value="<?php echo $rowLivro['description']?>" required>
+                            <textarea type="text" class="form-control" id="description" name="description" placeholder="About Luís Malheiro" required><?php echo $descripton; ?></textarea>
                             <div class="invalid-feedback">
                                 Please insert text about Luís Malheiro
                             </div>
@@ -121,22 +105,8 @@ if (isset($_GET['id'])) {
                 </form>
             </div>
             <div class="modal-footer">
-                <?php
-                } if($numero_registos != 0){
-                    ?>
-                    <button type="submit" class="btn btn-primary">Update Titles</button>
-                    <?php
-                }
-                else {
-                    ?>
-                    <div class="alert alert-danger" role="alert">
-                        <strong>ERROR! Not found</strong>
-                    </div>
-                    <?php
-                }
-                ?>
+                <button type="submit" class="btn btn-primary">Update Titles</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
             </div>
         </div>
     </div>
