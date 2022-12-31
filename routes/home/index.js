@@ -1,3 +1,4 @@
+/*
 var cells = document.querySelectorAll("td:nth-child(2)");
 
 cells.forEach(function(cell) {
@@ -6,3 +7,4 @@ cells.forEach(function(cell) {
         this.setAttribute("contenteditable", "true");
     });
 });
+*/

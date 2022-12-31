@@ -80,7 +80,52 @@ $row = $SLQ->fetch()
     </table>
 </section>
 
+<section style="padding: 40px">
 
+    <div class="card">
+        <div class="card-header">
+            Finance Simulator
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Earned money</h5>
+            <form class="needs-validation" method="post" novalidate>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <label for="salary">Basic Salary</label>
+                        <input type="number" class="form-control" id="salary" name="salary" placeholder="Insert Basic Salary" required>
+                        <div class="invalid-feedback">
+                            Please insert a valid salary
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label for="typemedal" class="label" >Type of Medal</label>
+                        <select class="form-select" id="typemedal" name="typemedal">
+                            <option value="1">Card</option>
+                            <option value="2">Money</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <label for="mealallowance">Meal allowance</label>
+                        <input type="number" class="form-control" id="mealallowance" name="mealallowance" placeholder="Insert Medal Allowance" required>
+                        <div class="invalid-feedback">
+                            Please insert a valid Medal allowance
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" onclick="test()" class="btn btn-primary">Calculate</button>
+            <p class="card-text" id="send"></p>
+        </div>
+        </form>
+        </div>
+    </div>
+
+
+</section>
+
+
+<!--
 <table>
     <tr>
         <td contenteditable>Column 1</td>
@@ -88,10 +133,13 @@ $row = $SLQ->fetch()
         <td contenteditable>Column 3</td>
     </tr>
 </table>
-
-
-
-
-
+-->
+<script src="calculator.js"></script>
 <script src="index.js"></script>
+
+
+
+
+
+
 

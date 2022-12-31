@@ -3,9 +3,6 @@ require_once '../menu.php';
 ?>
 
 <script>
-    function openmodal() {
-        $('#myModal').modal('show')
-    }
     function newmodal() {
         $('#adicionarModal').modal('show')
     }
@@ -46,7 +43,7 @@ require_once '../menu.php';
         <?php
         while($row = $INSTRUCAO->fetch()) {
             ?>
-            <tr ondblclick="openmodal()">
+            <tr ondblclick="edit()">
                 <td><?php echo $row['descricao'];?></td>
                 <td class="actions">
                     <a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a>
@@ -155,6 +152,6 @@ require_once '../menu.php';
     </div>
 </div>
 
-
+<script src="hardskills.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </html>
