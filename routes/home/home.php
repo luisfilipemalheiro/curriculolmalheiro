@@ -115,7 +115,7 @@ $row = $SLQ->fetch()
         <div class="card-footer">
             <button type="button" onclick="test()" class="btn btn-primary">Calculate</button>
             <button type="button" onclick="reset()" class="btn btn-danger">Reset</button>
-            <p class="card-text" id="send">aaa</p>
+            <p class="card-text" id="send"></p>
         </div>
         </form>
         </div>

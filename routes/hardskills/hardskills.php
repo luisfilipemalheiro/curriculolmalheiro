@@ -152,6 +152,7 @@ require_once '../menu.php';
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Insert Hard Skill</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <p class="card-text" id="send"></p>
             </div>
             </form>
         </div>

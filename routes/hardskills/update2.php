@@ -6,25 +6,25 @@ $pdo = pdo_connect_mysql();
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 if (empty($dados['id'])) {
-    $retorna = ['erro' => true, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Tente mais tarde!</div>"];
+    $data = ['ERROR' => true, 'msg' => "<div class='alert alert-danger' role='alert'>ERROR! This id not EXITS</div>"];
 } elseif (empty($dados['descricao'])) {
-    $retorna = ['erro' => true, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>"];
+    $data = ['ERROR' => true, 'msg' => "<div class='alert alert-danger' role='alert'>ERROR! This description not EXITS</div>"];
 }
 else {
-    $query_usuario= "UPDATE hardskills SET descricao=:descricao WHERE id=:id";
+    $query_usuer= "UPDATE hardskills SET descricao=:descricao WHERE id=:id";
 
-    $edit_usuario = $pdo->prepare($query_usuario);
-    $edit_usuario->bindParam(':descricao', $dados['descricao']);
-    $edit_usuario->bindParam(':id', $dados['id']);
+    $query_usuer = $pdo->prepare($query_usuer);
+    $query_usuer->bindParam(':descricao', $dados['descricao']);
+    $query_usuer->bindParam(':id', $dados['id']);
 
 
-    if ($edit_usuario->execute()) {
-        $retorna = ['erro' => false, 'msg' => "<div class='alert alert-success' role='alert'>Usuário editado com sucesso!</div>"];
+    if ($query_usuer->execute()) {
+        $data = ['erro' => false, 'msg' => "<div class='alert alert-success' role='alert'>SUCESS!!</div>"];
     } else {
-        $retorna = ['erro' => true, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Usuário não editado com sucesso!</div>"];
+        $data = ['erro' => true, 'msg' => "<div class='alert alert-danger' role='alert'>ERROR! Please insert valid description</div>"];
     }
 }
 
-echo json_encode($retorna);
+echo json_encode($data);
 
  ?>

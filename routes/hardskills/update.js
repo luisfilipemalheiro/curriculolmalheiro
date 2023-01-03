@@ -1,19 +1,18 @@
 async function editar(id){
     const editForm = document.getElementById("editform");
     const dados =  await fetch('update.php?id=' + id)
-    const resposta = await dados.json();
-    console.log(resposta);
+    const send = await dados.json();
 
-    if(resposta['erro']){
-        //msgAlerta.innerHTML = resposta['msg];
+    if(send['erro']){
+        document.getElementById("send").innerHTML = send['msg'];
     }
     else{
         $('#myModal').modal('show')
-        document.getElementById("idskill").value = resposta['dados'].id;
-        document.getElementById("descricao").value = resposta['dados'].descricao;
+        document.getElementById("idskill").value = send['dados'].id;
+        document.getElementById("descricao").value = send['dados'].descricao;
         editForm.addEventListener("submit", async (e) =>{
             e.preventDefault();
-            const dadosForm = new FormData(editForm)
+            const dataForm = new FormData(editForm)
 
 /*
             for( var dadosteste of dadosForm.entries()){
@@ -21,15 +20,13 @@ async function editar(id){
             }
             */
 
-            const dados = await fetch("update2.php", {
+            const data = await fetch("update2.php", {
                 method: "POST",
-                body: dadosForm
+                body: dataForm
             })
 
-            const teste = await dados.json()
-            console.log(teste);
-
-
+            const teste = await data.json()
+            document.getElementById("send").innerHTML = send['msg'];
         })
     }
 

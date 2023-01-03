@@ -13,9 +13,9 @@ if (!empty($id)) {
 
     $update = $result->fetch(PDO::FETCH_ASSOC);
 
-    $retorna = ['erro' => false, 'dados' => $update];
+    $data = ['error' => false, 'dados' => $update];
 } else {
-    $retorna = ['erro' => true, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Nenhum usuário encontrado!</div>"];
+    $data = ['error' => true, 'msg' => "<div class='alert alert-danger' role='alert'>ERROR! Hard Skill dont exists</div>"];
 }
 
-echo json_encode($retorna);
+echo json_encode($data);
