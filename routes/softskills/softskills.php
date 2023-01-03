@@ -2,12 +2,8 @@
 require_once '../menu.php';
 ?>
 
+<script src="update.js"></script>
 <script>
-    function openmodal(id) {
-        console.log(id);
-        $('#delete').modal('show')
-        return id;
-    }
     function newmodal() {
         $('#adicionarModal').modal('show')
     }
@@ -45,7 +41,7 @@ require_once '../menu.php';
         <?php
         while($row = $INSTRUCAO->fetch()) {
             ?>
-            <tr ondblclick="openmodal(<?php echo $row['id'] ?>)">
+            <tr ondblclick="editar(<?php echo $row['id']?>)">
                 <td><?php echo $row['descricao'];?></td>
                 <td class="actions">
                     <a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a>
@@ -108,6 +104,36 @@ require_once '../menu.php';
 </div>
 
 
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Soft Skills</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form class="needs-validation" method="post" id="editform" novalidate>
+                    <input type="hidden" name="id" id="idskill">
+                    <div class="row">
+                        <div class="col-md-12 mb-12">
+                            <label for="descricaosf">Description</label>
+                            <input type="text" class="form-control" id="descricaosf" name="descricaosf" placeholder="Update Description" required>
+                            <div class="invalid-feedback">
+                                Please update description with valid text
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Update Soft Skill</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <p class="card-text" id="send"></p>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

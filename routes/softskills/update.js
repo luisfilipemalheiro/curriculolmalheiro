@@ -1,15 +1,16 @@
 async function editar(id){
+    console.log(id)
     const editForm = document.getElementById("editform");
-    const hardskill =  await fetch('update.php?id=' + id)
-    const send = await hardskill.json();
+    const skill =  await fetch('update.php?id=' + id)
+    const send = await skill.json();
 
     if(send['erro']){
         document.getElementById("send").innerHTML = send['msg'];
     }
     else{
         $('#myModal').modal('show')
-        document.getElementById("idskill").value = send['hardskill'].id;
-        document.getElementById("descricao").value = send['hardskill'].descricao;
+        document.getElementById("idskill").value = send['skill'].id;
+        document.getElementById("descricaosf").value = send['skill'].descricao;
         editForm.addEventListener("submit", async (e) =>{
             e.preventDefault();
             const dataForm = new FormData(editForm)
@@ -20,7 +21,7 @@ async function editar(id){
             })
 
             const teste = await data.json()
-            document.getElementById("send").innerHTML = send['msg'];
+            //document.getElementById("send").innerHTML = send['msg'];
         })
     }
 
