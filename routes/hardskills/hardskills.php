@@ -1,6 +1,7 @@
 <?php
 require_once '../menu.php';
 ?>
+<script src="update.js"></script>
 
 <script>
     function newmodal() {
@@ -8,12 +9,6 @@ require_once '../menu.php';
     }
     function eliminar() {
         $('#eliminar').modal('show')
-    }
-
-    function editar(id){
-        console.log(id);
-        $('#myModal').modal('show')
-        return id;
     }
 
 </script>
@@ -97,22 +92,23 @@ require_once '../menu.php';
             </div>
             <div class="modal-body">
 
-                <form class="needs-validation" method="post" novalidate>
+                <form class="needs-validation" method="post" id="editform" novalidate>
+                    <input type="hidden" name="id" id="idskill">
                     <div class="row">
                         <div class="col-md-12 mb-12">
-                            <label for="description">Description</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="Update Description" required>
+                            <label for="descricao">Description</label>
+                            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Update Description" required>
                             <div class="invalid-feedback">
                                 Please update description with valid text
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Update Hard Skill</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -162,6 +158,5 @@ require_once '../menu.php';
     </div>
 </div>
 
-<script src="hardskills.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </html>
