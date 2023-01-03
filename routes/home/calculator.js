@@ -21,5 +21,18 @@ function test(){
         return salary
     }
 
+    /*
+    IRS
+    SEGU SOCIAL
+    ORDENADO LIQUIDO
+     */
 
+
+}
+
+function reset(){
+    var form = document.getElementById("form");
+    const typemedal = document.getElementById("typemedal").value; // tipo de subsidio
+    typemedal.value = 0;
+    form.reset();
 }

@@ -9,6 +9,13 @@ require_once '../menu.php';
     function eliminar() {
         $('#eliminar').modal('show')
     }
+
+    function editar(id){
+        console.log(id);
+        $('#myModal').modal('show')
+        return id;
+    }
+
 </script>
 
 <html>
@@ -43,7 +50,7 @@ require_once '../menu.php';
         <?php
         while($row = $INSTRUCAO->fetch()) {
             ?>
-            <tr ondblclick="edit()">
+            <tr ondblclick="editar(<?php echo $row['id']?>)">
                 <td><?php echo $row['descricao'];?></td>
                 <td class="actions">
                     <a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a>
@@ -79,6 +86,8 @@ require_once '../menu.php';
 </section>
 
 
+
+
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -87,6 +96,7 @@ require_once '../menu.php';
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
                 <form class="needs-validation" method="post" novalidate>
                     <div class="row">
                         <div class="col-md-12 mb-12">

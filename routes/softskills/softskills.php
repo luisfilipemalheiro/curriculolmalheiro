@@ -3,8 +3,10 @@ require_once '../menu.php';
 ?>
 
 <script>
-    function openmodal() {
+    function openmodal(id) {
+        console.log(id);
         $('#delete').modal('show')
+        return id;
     }
     function newmodal() {
         $('#adicionarModal').modal('show')
@@ -43,7 +45,7 @@ require_once '../menu.php';
         <?php
         while($row = $INSTRUCAO->fetch()) {
             ?>
-            <tr ondblclick="openmodal()">
+            <tr ondblclick="openmodal(<?php echo $row['id'] ?>)">
                 <td><?php echo $row['descricao'];?></td>
                 <td class="actions">
                     <a href="delete.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a>
