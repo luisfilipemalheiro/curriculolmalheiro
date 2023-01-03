@@ -50,7 +50,6 @@ require_once '../menu.php';
 
             </tr>
             <?php
-            $id = $row['id'];
             $name = $row['firstname'];
             $lastname = $row['lastname'];
             $descripton = $row['description'];

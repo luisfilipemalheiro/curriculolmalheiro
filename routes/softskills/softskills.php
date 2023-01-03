@@ -81,8 +81,8 @@ require_once '../menu.php';
 
                     $stmt = $pdo->prepare('INSERT INTO softskills (idaboutme, descricao) VALUES (?, ?)');
                     $stmt->execute([1, $descricao]);
-
                     $msg = 'Created Successfully!';
+
                 }
                 ?>
                 <form class="needs-validation" method="post" action="softskills.php" novalidate>
