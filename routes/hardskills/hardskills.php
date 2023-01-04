@@ -11,7 +11,6 @@ require_once '../menu.php';
     function eliminar() {
         $('#eliminar').modal('show')
     }
-
 </script>
 
 <html>
