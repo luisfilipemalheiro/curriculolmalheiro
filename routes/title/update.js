@@ -18,14 +18,12 @@ async function editar(id){
 
             const dataForm = new FormData(editForm)
 
-
-
-
             const data = await fetch("update2.php", {
                 method: "POST",
                 body: dataForm
             })
             $('#myModal').modal('hide');
+            openToast();
 
 
             const teste = await data.json()
@@ -33,5 +31,12 @@ async function editar(id){
 
         })
     }
+
+}
+
+function openToast(){
+    $(document).ready(function (){
+        $('.toast').toast('show');
+    })
 
 }

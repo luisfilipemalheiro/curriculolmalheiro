@@ -20,11 +20,16 @@ async function edit(id){
                 body: dataForm
             })
             $('#myModal').modal('hide');
+            openToast();
 
             const teste = await data.json()
-            document.getElementById("send").innerHTML = send['msg'];
         })
     }
+}
 
+function openToast(){
+    $(document).ready(function (){
+        $('.toast').toast('show');
+    })
 
 }
