@@ -19,6 +19,7 @@ async function edit(id){
                 method: "POST",
                 body: dataForm
             })
+            $('#myModal').modal('hide');
 
             const teste = await data.json()
             document.getElementById("send").innerHTML = send['msg'];
