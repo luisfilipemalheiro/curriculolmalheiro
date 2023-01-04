@@ -7,8 +7,26 @@ require_once '../menu.php';
 
 <html>
 
+
+<div id="toast" aria-live="polite" aria-atomic="true" style="position: relative; display: block">
+    <div class="toast bg-success" style="position: absolute; top: 0; right: 0;">
+        <div class="toast-header">
+            <strong class="me-auto">SUCCESS!</strong>
+            <small class="text-muted">Just Now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            You edit school with success
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <section style="padding: 40px">
-    <div class="card" style="margin-bottom: 30px">
+    <div class="card" style="margin-bottom: 30px; position: static">
         <div class="card-header">
             <div class="title" style="font-family: Courier New, monospace; font-size: 20px">
                 School
@@ -82,7 +100,7 @@ require_once '../menu.php';
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update School</button>
+                <button type="submit"  class="btn btn-primary">Update School</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <p class="card-text" id="send"></p>
             </div>
@@ -90,6 +108,11 @@ require_once '../menu.php';
         </div>
     </div>
 </div>
+
+
+
+
+
 
 
 
