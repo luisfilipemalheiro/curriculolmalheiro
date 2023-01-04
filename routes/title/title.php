@@ -82,7 +82,7 @@ require_once '../menu.php';
                     <div class="row">
                         <div class="col-md-12 mb-12">
                             <label for="description">About Luís Malheiro</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="About Luis Malheiro" required>
+                            <textarea type="text" class="form-control" id="description" name="description" placeholder="About Luis Malheiro" required></textarea>
                         </div>
                     </div>
             </div>
