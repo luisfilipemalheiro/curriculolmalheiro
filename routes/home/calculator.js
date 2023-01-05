@@ -1,38 +1,128 @@
 
+window.addEventListener("load", () => {
+    let taxes = {
+        710: 0,
+        1015: 11.3,
+        1577: 17.2,
+        2109: 21.9,
+        5241: 32.3,
+        11384: 39.2,
+        25505: 43.8,
+    };
+    let typeMealAllowance = document.getElementById("meal_allowance");
+    let mealAllowance = document.getElementById("meal_allowance_amount");
+    let mealDays = document.getElementById("meal_days");
 
-function test(){
+    typeMealAllowance.addEventListener("change", () => {
+        if (typeMealAllowance.value === "no_allowance") {
+            mealAllowance.value = 0;
+            mealDays.value = 0;
+            mealAllowance.disabled = true;
+            mealDays.disabled = true;
+        } else {
+            mealAllowance.disabled = false;
+            mealDays.disabled = false;
+        }
+    });
 
-    let salary = document.getElementById('salary').value; //vencimento base
-    const typemedal = document.getElementById("typemedal").value; // tipo de subsidio
-    const mealallowance = document.getElementById("mealallowance").value; //subsidicio refeicao
+    mealDays.addEventListener("change", () => {
+        //if already exists error message delete it
+        if (mealDays.parentNode.querySelector("span")) {
+            mealDays.parentNode.querySelector("span").remove();
+            mealDays.style.border = "1px solid #000000";
+        }
+        if (mealDays.value > 31 || mealDays.value < 1) {
+            mealDays.style.border = "1px solid red";
+            let span = document.createElement("span");
+            span.innerHTML = "Please enter a valid number between 1 and 31";
+            span.style.color = "red";
+            span.style.fontWeight = "bold";
+            mealDays.parentNode.appendChild(span);
+        }
+    });
 
-
-    if(salary == null || salary <=700 || typemedal == null || mealallowance == null || mealallowance <=0){
-        document.getElementById("send").innerHTML = "Please insert valid numbers";
+    function getTaxRate(grossSalary, taxTable) {
+        for (let salary in taxTable) {
+            if (salary >= grossSalary) {
+                return taxTable[salary];
+            }
+        }
+        return 43.8;
     }
 
-    if(typemedal == 1 && mealallowance >= 7.33){
-        salary += mealallowance;
-        return salary;
+    function calculateMealAllowance(
+        netSalary,
+        grossSalary,
+        typeMealAllowance,
+        mealAllowance,
+        mealDays
+    ) {
+        let mealAllowanceTaxed = 0;
+        if (typeMealAllowance === "no_allowance") {
+            return {netSalary: netSalary, grossSalary: grossSalary};
+        } else if (typeMealAllowance === "card") {
+            if (mealAllowance >= 7.33) {
+                mealAllowanceTaxed = mealAllowance - 7.33;
+                grossSalary = grossSalary + (mealAllowance - 7.33) * mealDays;
+                netSalary = netSalary + 7.33 * mealDays;
+            } else {
+                netSalary = netSalary + mealAllowance * 22;
+            }
+        } else if (typeMealAllowance === "money") {
+            if (mealAllowance >= 4.57) {
+                mealAllowanceTaxed = mealAllowance - 4.57;
+                grossSalary = grossSalary + (mealAllowance - 4.57) * mealDays;
+                netSalary = netSalary + 4.57 * 22;
+            } else {
+                netSalary = netSalary + mealAllowance * mealDays;
+            }
+        }
+        return {netSalary: netSalary, grossSalary: grossSalary, mealAllowanceTaxed: mealAllowanceTaxed};
     }
 
-    if(typemedal == 2 && mealallowance >= 4.57){
-        salary += mealallowance;
-        return salary
+    function calculateNetSalary() {
+        let netSalaryTemp = 0;
+        let grossSalary = +document.getElementById("base_salary").value;
+        let typeMealAllowance = document.getElementById("meal_allowance").value;
+        let mealAllowance = +document.getElementById("meal_allowance_amount").value;
+        const mealDays = +document.getElementById("meal_days").value;
+        const result = calculateMealAllowance(
+            netSalaryTemp,
+            grossSalary,
+            typeMealAllowance,
+            mealAllowance,
+            mealDays
+        );
+        netSalaryTemp = result.netSalary;
+        grossSalary = result.grossSalary;
+        const taxOwed = getTaxRate(grossSalary, taxes);
+
+        const descontos_ss = grossSalary * (11 / 100);
+        const descontos_irs = grossSalary * (taxOwed / 100);
+
+        const netSalary =
+            grossSalary - descontos_irs - descontos_ss + netSalaryTemp;
+        document.getElementById("net_salary").textContent = netSalary.toFixed(2);
+        document.getElementById("descontos_irs").textContent =
+            descontos_irs.toFixed(2);
+        document.getElementById("descontos_ss").textContent =
+            descontos_ss.toFixed(2);
+        document.getElementById("gross_salary").textContent =
+            grossSalary.toFixed(2);
+        document.getElementById("taxes").textContent = taxOwed.toFixed(2) + "%";
+        document.getElementById("meal_allowance_value").textContent =
+            (mealDays * mealAllowance).toFixed(2);
+        document.getElementById("meal_allowance_taxed").textContent =
+            (result.mealAllowanceTaxed * mealDays).toFixed(2);
     }
 
-    /*
-    IRS
-    SEGU SOCIAL
-    ORDENADO LIQUIDO
-     */
-
-
-}
+    const calculateButton = document.getElementById("calculate");
+    calculateButton.addEventListener("click", calculateNetSalary);
+});
 
 function reset(){
     var form = document.getElementById("form");
-    const typemedal = document.getElementById("typemedal").value; // tipo de subsidio
+    const typemedal = document.getElementById("meal_allowance").value; // tipo de subsidio
     typemedal.value = 0;
     form.reset();
 }

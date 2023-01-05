@@ -9,6 +9,7 @@ $SLQ = $LIGACAO->query('SELECT numberusers from aboutme');
 $SLQ->setFetchMode(PDO::FETCH_ASSOC);
 $row = $SLQ->fetch()
 ?>
+<script src="calculator.js"></script>
 <section style="padding: 80px">
     <div class="row">
         <div class="col-1">
@@ -91,31 +92,37 @@ $row = $SLQ->fetch()
             <form class="needs-validation" method="post" id="form" novalidate>
                 <div class="row">
                     <div class="col-md-3 mb-3">
-                        <label for="salary">Basic Salary</label>
-                        <input type="number" class="form-control" id="salary" name="salary" placeholder="Insert Basic Salary" required>
+                        <label for="base_salary">Basic Salary</label>
+                        <input type="number" class="form-control" id="base_salary" name="base_salary" placeholder="Insert Basic Salary" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="typemedal" class="label" >Type of Medal</label>
-                        <select class="form-select" id="typemedal" name="typemedal">
+                        <label for="meal_allowance" class="label" >Type of Medal</label>
+                        <select class="form-select" id="meal_allowance" name="meal_allowance">
                             <option value="0" selected>Select option(not required)</option>
                             <option value="1">Card</option>
                             <option value="2">Money</option>
                         </select>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="mealallowance">Meal allowance</label>
-                        <input type="number" class="form-control" id="mealallowance" name="mealallowance" placeholder="Insert Medal Allowance" required>
+                        <label for="meal_allowance_amount">Meal allowance</label>
+                        <input type="number" class="form-control" id="meal_allowance_amount" name="meal_allowance_amount" placeholder="Insert Medal Allowance" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="days">Number days</label>
-                        <input type="number" class="form-control" id="days" name="days" placeholder="Insert Number Days" required>
+                        <label for="meal_days">Number days</label>
+                        <input type="number" class="form-control" id="meal_days" name="meal_days" placeholder="Insert Number Days" required>
                     </div>
                 </div>
         </div>
         <div class="card-footer">
-            <button type="button" onclick="test()" class="btn btn-primary">Calculate</button>
+            <button type="button" id="calculate" class="btn btn-primary">Calculate</button>
             <button type="button" onclick="reset()" class="btn btn-danger">Reset</button>
-            <p class="card-text" id="send"></p>
+            <p>Your gross salary is: <span id="gross_salary"></span></p>
+            <p>The taxes you pay are: <span id="taxes"></span></p>
+            <p>The ammout you receive as meal allowance: <span id="meal_allowance_value"></span></p>
+            <p>Meal allowance that is taxed: <span id="meal_allowance_taxed"></span></p>
+            <p>IRS tax: <span id="descontos_irs"></span></p>
+            <p>SS tax: <span id="descontos_ss"></span></p>
+            <p>Your net salary is: <span id="net_salary"></span></p>
         </div>
         </form>
         </div>
@@ -134,7 +141,7 @@ $row = $SLQ->fetch()
     </tr>
 </table>
 -->
-<script src="calculator.js"></script>
+
 <script src="index.js"></script>
 
 
