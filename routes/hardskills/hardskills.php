@@ -1,5 +1,11 @@
 <?php
 require_once '../menu.php';
+$repet = false;
+if (isset($_POST['descricao'])) {
+    if ($_SESSION['teste'] == $_POST['descricao']) {
+        $repet = true;
+    }
+}
 ?>
 <script src="update.js"></script>
 
@@ -143,13 +149,15 @@ require_once '../menu.php';
 
                 if (!empty($_POST)) {
 
-
+                if (!$repet) {
                     $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
 
                     $stmt = $pdo->prepare('INSERT INTO hardskills (idaboutme, descricao) VALUES (?, ?)');
                     $stmt->execute([1, $descricao]);
 
                     $msg = 'Created Successfully!';
+                    $_SESSION['teste'] = $_POST['descricao'];
+                }
                 }
                 ?>
                 <form class="needs-validation" method="post" action="hardskills.php" novalidate>

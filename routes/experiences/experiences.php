@@ -1,5 +1,11 @@
 <?php
 require_once '../menu.php';
+$repet = false;
+if (isset($_POST['descricao'])) {
+    if ($_SESSION['teste'] == $_POST['descricao']) {
+        $repet = true;
+    }
+}
 ?>
 
 <script>
@@ -109,18 +115,23 @@ require_once('../../connectionBD/connect.php');
 $pdo = pdo_connect_mysql();
 $msg = '';
 if (!empty($_POST)) {
-    $title = isset($_POST['title']) ? $_POST['title'] : '';
-    $descripton = isset($_POST['descripton']) ? $_POST['descripton'] : '';
+    if (!$repet) {
+        $title = isset($_POST['title']) ? $_POST['title'] : '';
+        $descripton = isset($_POST['descripton']) ? $_POST['descripton'] : '';
 
-    $stmt = $pdo->prepare('INSERT INTO experience (idaboutme, title, descripton) VALUES (?, ?, ?)');
-    $stmt->execute([1, $title, $descripton]);
-    $error = 'ERROR!! Please insert data';
+        $stmt = $pdo->prepare('INSERT INTO experience (idaboutme, title, descripton) VALUES (?, ?, ?)');
+        $stmt->execute([1, $title, $descripton]);
+        $error = 'ERROR!! Please insert data';
 
 
-    $dados = array();
-    $INSTRUCAO = $LIGACAO->prepare("SELECT id, title, descripton FROM experience WHERE title = '$title'");
-    $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
-    $INSTRUCAO->execute($dados);
+        $dados = array();
+        $INSTRUCAO = $LIGACAO->prepare("SELECT id, title, descripton FROM experience WHERE title = '$title'");
+        $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
+        $INSTRUCAO->execute($dados);
+        $_SESSION['teste'] = $_POST['title'];
+        $_SESSION['teste'] = $_SESSION['descripton'];
+
+    }
 }
 ?>
 
