@@ -42,11 +42,3 @@ function openToast(){
     })
 
 }
-
-function uploadimageok(){
-    const upload = document.getElementById("upload");
-    upload.addEventListener("submit", async (e) => {
-        console.log("entrei")
-        $('#myModal').modal('show')
-    })
-}
