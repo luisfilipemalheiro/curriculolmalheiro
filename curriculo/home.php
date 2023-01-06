@@ -20,7 +20,7 @@ while($row = $SQL->fetch()) {
 <section>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <img class="imagem" src="<?php echo $row['imagepath'];?>" alt="foto de perfil Luís Malheiro">
+            <img class="imagem" style="height: 400px; width: 400px" src="<?php echo $row['imagepath'];?>" alt="foto de perfil Luís Malheiro">
         </div>
         <div class="col-12 col-lg-6">
             <h1><?php echo $row['firstname'];?> <?php echo $row['lastname'];?></h1>
