@@ -72,45 +72,45 @@ if (isset($_POST['descricao'])) {
         <tbody>
         <?php
         while($row = $INSTRUCAO->fetch()) {
-            ?>
+        ?>
         <tr ondblclick="updateexp(<?php echo $row['id']?>)">
-                <td>
-                    <details>
+            <td>
+                <details>
+                    <?php
+                    require_once('../../connectionBD/connect.php');
+                    $pdo = pdo_connect_mysql();
+                    $stmt = $pdo->prepare('SELECT * FROM tasks WHERE idexpirence = ?');
+                    $stmt->execute([$row['id']]);
+                    $languages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+                    <summary></summary>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Description</th>
+                            <td style="width: 40px"></td>
+                        </tr>
+                        </thead>
+                        <tbody>
                         <?php
-                        require_once('../../connectionBD/connect.php');
-                        $pdo = pdo_connect_mysql();
-                        $stmt = $pdo->prepare('SELECT * FROM tasks WHERE idexpirence = ?');
-                        $stmt->execute([$row['id']]);
-                        $languages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        ?>
-                        <summary></summary>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Description</th>
-                                <td style="width: 40px"></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($languages as $language):
-                                ?>
+                        foreach ($languages as $language):
+                            ?>
                             <tr>
                                 <th scope="row"><?php echo $language['id'] ;?></th>
                                 <td><?php echo $language['nametask'];?></td>
                                 <td><a href="deletetask.php?id=<?=$language['id']?>" class="trash"><i class="fa">&#xf014;</i></a></td>
                             </tr>
-                            <?php endforeach;?>
-                            </tbody>
-                        </table>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
 
-                    </details>
-                </td>
-                <td><?php echo $row['title'];?></td>
-                <td><?php echo $row['descripton'];?></td>
-                <td><a href="deletexperience.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a></td>
-            </tr>
+                </details>
+            </td>
+            <td><?php echo $row['title'];?></td>
+            <td><?php echo $row['descripton'];?></td>
+            <td><a href="deletexperience.php?id=<?=$row['id']?>" class="trash"><i class="fa">&#xf014;</i></a></td>
+        </tr>
         </tbody>
         <?php
         $titleP = $row['title'];
@@ -183,13 +183,13 @@ if (!empty($_POST)) {
                             </div>
                         </div>
 
-                            <?php
-                            while ($row = $INSTRUCAO->fetch()) {
-                                $nametask = isset($_POST['nametask']) ? $_POST['nametask'] : '';
-                                $stmt = $pdo->prepare('INSERT INTO tasks (nametask, idexpirence) VALUES (?, ?)');
-                                $stmt->execute([$nametask, $row['id']]);
-                                $error = 'ERROR!! Please insert data';
-                            }
+                        <?php
+                        while ($row = $INSTRUCAO->fetch()) {
+                            $nametask = isset($_POST['nametask']) ? $_POST['nametask'] : '';
+                            $stmt = $pdo->prepare('INSERT INTO tasks (nametask, idexpirence) VALUES (?, ?)');
+                            $stmt->execute([$nametask, $row['id']]);
+                            $error = 'ERROR!! Please insert data';
+                        }
                         ?>
                     </div>
             </div>
@@ -215,31 +215,31 @@ if (!empty($_POST)) {
                 <form class="needs-validation" method="post" id="editexp" novalidate>
                     <input type="hidden" name="id" id="idexp">
                     <div class="row">
-                    <div class="row">
-                        <div class="col-md-6 mb-6">
-                            <label for="titleexp">Title</label>
-                            <input type="text" class="form-control" id="titleexp" name="titleexp" placeholder="Update Title" required>
-                        </div>
-                        <div class="col-md-6 mb-6">
-                            <label for="descriptonexp">Description</label>
-                            <input type="text" class="form-control" id="descriptonexp" name="descriptonexp" placeholder="Update Description" required>
+                        <div class="row">
+                            <div class="col-md-6 mb-6">
+                                <label for="titleexp">Title</label>
+                                <input type="text" class="form-control" id="titleexp" name="titleexp" placeholder="Update Title" required>
+                            </div>
+                            <div class="col-md-6 mb-6">
+                                <label for="descriptonexp">Description</label>
+                                <input type="text" class="form-control" id="descriptonexp" name="descriptonexp" placeholder="Update Description" required>
+                            </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="submit"  class="btn btn-primary">Update Description</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <p class="card-text" id="send"></p>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="submit"  class="btn btn-primary">Update Description</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <p class="card-text" id="send"></p>
-            </div>
-            </form>
         </div>
     </div>
-</div>
 
 
 
 
 
-<script src="expirences.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="expirences.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </html>

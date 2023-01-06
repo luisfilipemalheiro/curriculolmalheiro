@@ -15,6 +15,7 @@ async function updateexp(id){
         editExp.addEventListener("submit", async (e) =>{
             e.preventDefault();
             const dataForm = new FormData(editExp)
+            console.log(dataForm)
 
             const data = await fetch("update2exp.php", {
                 method: "POST",
@@ -37,5 +38,11 @@ function openToast(){
     $(document).ready(function (){
         $('.toast').toast('show');
     })
+
+}
+
+
+function addModal(){
+    $('#adicionarModal').modal('show');
 
 }
