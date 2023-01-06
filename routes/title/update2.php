@@ -17,6 +17,7 @@ if (empty($dados['id'])) {
     $data = ['ERROR' => true, 'msg' => "<div class='alert alert-danger' role='alert'>ERROR! This description not EXITS</div>"];
 }
 else {
+
     $query= "UPDATE aboutme SET firstname=:firstname, lastname=:lastname, imagepath=:imagepath, description=:description WHERE id=:id";
 
     $query = $pdo->prepare($query);

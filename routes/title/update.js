@@ -4,7 +4,8 @@ async function editar(id){
     const sendtitle = await title.json();
 
     if(sendtitle['erro']){
-        document.getElementById("sendtitle").innerHTML = sendtitle['msg'];
+        console.log("ERROR")
+        //document.getElementById("sendtitle").innerHTML = sendtitle['msg'];
     }
     else{
         $('#myModal').modal('show')
@@ -22,12 +23,13 @@ async function editar(id){
                 method: "POST",
                 body: dataForm
             })
+
             $('#myModal').modal('hide');
             openToast();
 
 
             const teste = await data.json()
-            document.getElementById("send").innerHTML = sendtitle['msg'];
+
 
         })
     }
