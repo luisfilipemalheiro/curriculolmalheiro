@@ -22,6 +22,7 @@ require_once '../menu.php';
 
 
 
+
 <section style="padding: 40px">
     <div class="card" style="margin-bottom: 30px; position: static">
         <div class="card-header">
@@ -66,11 +67,11 @@ require_once '../menu.php';
         </tbody>
     </table>
     <div class="content update">
-        <form action="image.php" method="post" enctype="multipart/form-data">
+        <form action="image.php" id="upload" method="post" enctype="multipart/form-data">
             <div class="row">
             <div class="col-md-6">
             <label for="filename">Filename</label>
-            <input type="file" class="form-control" name="filename" placeholder="c://" id="filename" required>
+            <input type="file" class="form-control" name="filename" accept="image/*" placeholder="c://" id="filename" required>
             </div>
 
             <div class="col-md-4">
@@ -79,6 +80,7 @@ require_once '../menu.php';
             </div>
                 <div class="col-md-2">
                     <button type="submit" value="Create" style="margin-top:23px" class="btn btn-warning"><i class="fa">&#xf093;</i> upload</button>
+                    <script>openToast()</script>
                     <!--<input type="submit" value="Create">-->
                 </div>
             </div>
