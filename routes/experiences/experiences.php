@@ -7,6 +7,20 @@ if (isset($_POST['descricao'])) {
     }
 }
 ?>
+<script src="updateexp.js"></script>
+
+<div id="toast" aria-live="polite" aria-atomic="true" style="position: relative; display: block">
+    <div class="toast bg-success" style="position: absolute; top: 0; right: 0;">
+        <div class="toast-header">
+            <strong class="me-auto">SUCCESS!</strong>
+            <small class="text-muted">Just Now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            You edit experiences with success
+        </div>
+    </div>
+</div>
 
 <script>
     function openmodal() {
@@ -16,16 +30,12 @@ if (isset($_POST['descricao'])) {
     function addtask() {
         $('#adicionartask').modal('show')
     }
-
-    function update() {
-        $('#updatetask').modal('show')
-    }
 </script>
 
 <html>
 
 <section style="padding: 40px">
-    <div class="card" style="margin-bottom: 30px">
+    <div class="card" style="margin-bottom: 30px; position: static">
         <div class="card-header">
             <div class="title" style="font-family: Courier New, monospace; font-size: 20px">
                 Expirences
@@ -63,7 +73,7 @@ if (isset($_POST['descricao'])) {
         <?php
         while($row = $INSTRUCAO->fetch()) {
             ?>
-            <tr ondblclick="update()">
+        <tr ondblclick="updateexp(<?php echo $row['id']?>)">
                 <td>
                     <details>
                         <?php
@@ -129,7 +139,7 @@ if (!empty($_POST)) {
         $INSTRUCAO->setFetchMode(PDO::FETCH_ASSOC);
         $INSTRUCAO->execute($dados);
         $_SESSION['teste'] = $_POST['title'];
-        $_SESSION['teste'] = $_SESSION['descripton'];
+        $_SESSION['teste'] = $_POST['descripton'];
 
     }
 }
@@ -193,52 +203,39 @@ if (!empty($_POST)) {
 </div>
 
 
-
-
-<div class="modal" id="updatetask">
+<div class="modal" id="updateexpirence">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Update Task</h5>
+                <h5 class="modal-title">Edit Experience</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" method="post" action="experiences.php" novalidate id="myForm">
+
+                <form class="needs-validation" method="post" id="editexp" novalidate>
+                    <input type="hidden" name="id" id="idexp">
+                    <div class="row">
                     <div class="row">
                         <div class="col-md-6 mb-6">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Insert Title" required>
-                            <div class="invalid-feedback">
-                                Please update description with valid text
-                            </div>
+                            <label for="titleexp">Title</label>
+                            <input type="text" class="form-control" id="titleexp" name="titleexp" placeholder="Update Title" required>
                         </div>
-
                         <div class="col-md-6 mb-6">
-                            <label for="descripton">Descripton</label>
-                            <input type="text" class="form-control" id="descripton" name="descripton" placeholder="Insert Description" required>
-                            <div class="invalid-feedback">
-                                Please update description with valid text
-                            </div>
+                            <label for="descriptonexp">Description</label>
+                            <input type="text" class="form-control" id="descriptonexp" name="descriptonexp" placeholder="Update Description" required>
                         </div>
-
-                        <div class="col-md-12 mb-12" id="myTable">
-                            <label for="nametask">Tasks</label>
-                            <input type="text" class="form-control" id="nametask" name="nametask" placeholder="Insert Task" required>
-                            <div class="invalid-feedback">
-                                Please update description with valid text
-                            </div>
-                        </div>
-
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update Expirence</button>
+                <button type="submit"  class="btn btn-primary">Update Description</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <p class="card-text" id="send"></p>
             </div>
             </form>
         </div>
     </div>
 </div>
+
 
 
 
