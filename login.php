@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $aux =$experience['numberusers'] + 1;
                             $stmt = $pdo->prepare('UPDATE aboutme SET numberusers = ? where id = 1');
                             $stmt->execute([$aux]);
-                            header("location: ../curriculolmalheiro/routes/home/home.php");
+                            header("location: ./routes/home/home.php");
                         }
                         else{
                             $login_err = "Username or password wrong!";

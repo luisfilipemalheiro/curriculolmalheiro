@@ -8,7 +8,7 @@ echo empty($_POST);
 if (!empty($_POST)) {
 
 
-    $target_dir = "../../../curriculolmalheiro/images";
+    $target_dir = "../images";
     $target_file = $target_dir . basename($_FILES["filename"]["name"]);
 
     if (move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file)) {
