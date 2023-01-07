@@ -23,12 +23,35 @@ if (isset($_POST['title'])) {
 </div>
 
 <script>
+    let count = 0;
     function openmodal() {
         $('#myModal').modal('show')
     }
 
     function addtask() {
         $('#adicionartask').modal('show')
+    }
+
+
+    function addRow2() {
+        const form = document.getElementById("myForm");
+        const newRow = document.createElement("input");
+
+        count++;
+        console.log(count)
+
+        //newRow.innerHTML = "Name:";
+
+        newRow.style = "margin-top: 10px";
+        newRow.type = "text";
+        newRow.className = "form-control";
+        newRow.id = "nametask" + count;
+        console.log("nametask" + count);
+        newRow.name = "nametask" + count;
+        newRow.placeholder = "Insert Task";
+
+        form.appendChild(newRow);
+
     }
 </script>
 
@@ -170,7 +193,7 @@ if (!$repet) {
                         </div>
 
                         <div class="col-md-12 mb-12" style="margin-top: 10px">
-                            <button type="button" onclick="addRow()" name="newtask" class="btn btn-warning"><i class="fa">&#xf067;</i>New Task</button>
+                            <button type="button" onclick="addRow2()" id="newtask" name="newtask" class="btn btn-warning"><i class="fa">&#xf067;</i>New Task</button>
                         </div>
 
                         <div class="col-md-12 mb-12" id="myTable">
@@ -184,8 +207,20 @@ if (!$repet) {
                         <?php
                         while ($row = $INSTRUCAO->fetch()) {
                             $nametask = isset($_POST['nametask']) ? $_POST['nametask'] : '';
+                            $nametask1 = isset($_POST['nametask1']) ? $_POST['nametask1'] : '';
+                            $nametask2= isset($_POST['nametask2']) ? $_POST['nametask2'] : '';
+                            $nametask3 = isset($_POST['nametask3']) ? $_POST['nametask3'] : '';
+                            $nametask4 = isset($_POST['nametask4']) ? $_POST['nametask4'] : '';
+                            $nametask5 = isset($_POST['nametask5']) ? $_POST['nametask5'] : '';
+                            $nametask6 = isset($_POST['nametask6']) ? $_POST['nametask6'] : '';
                             $stmt = $pdo->prepare('INSERT INTO tasks (nametask, idexpirence) VALUES (?, ?)');
                             $stmt->execute([$nametask, $row['id']]);
+                            $stmt->execute([$nametask1, $row['id']]);
+                            $stmt->execute([$nametask2, $row['id']]);
+                            $stmt->execute([$nametask3, $row['id']]);
+                            $stmt->execute([$nametask4, $row['id']]);
+                            $stmt->execute([$nametask5, $row['id']]);
+                            $stmt->execute([$nametask6, $row['id']]);
                             $error = 'ERROR!! Please insert data';
                         }
                         ?>
