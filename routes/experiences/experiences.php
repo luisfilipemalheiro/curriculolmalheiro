@@ -8,6 +8,7 @@ if (isset($_POST['title'])) {
 }
 ?>
 <script src="updateexp.js"></script>
+<script src="expirences.js"></script>
 
 <div id="toast" aria-live="polite" aria-atomic="true" style="position: relative; display: block">
     <div class="toast bg-success" style="position: absolute; top: 0; right: 0;">
@@ -36,7 +37,6 @@ if (isset($_POST['title'])) {
     function addRow2() {
         const form = document.getElementById("myForm");
         const newRow = document.createElement("input");
-
         count++;
         console.log(count)
 
@@ -49,6 +49,7 @@ if (isset($_POST['title'])) {
         console.log("nametask" + count);
         newRow.name = "nametask" + count;
         newRow.placeholder = "Insert Task";
+
 
         form.appendChild(newRow);
 
@@ -243,9 +244,10 @@ if (!$repet) {
                 <h5 class="modal-title">Edit Experience</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+
 
                 <form class="needs-validation" method="post" id="editexp" novalidate>
+                    <div class="modal-body">
                     <input type="hidden" name="id" id="idexp">
                     <div class="row">
                         <div class="row">
@@ -258,6 +260,7 @@ if (!$repet) {
                                 <input type="text" class="form-control" id="descriptonexp" name="descriptonexp" placeholder="Update Description" required>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit"  class="btn btn-primary">Update Description</button>

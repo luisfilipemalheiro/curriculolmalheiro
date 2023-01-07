@@ -1,7 +1,7 @@
 
 let count = 0;
 
-function addRow() {
+function addRow2() {
     const form = document.getElementById("myForm");
     const newRow = document.createElement("input");
 
