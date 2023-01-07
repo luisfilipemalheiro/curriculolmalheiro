@@ -25,6 +25,25 @@ if (!empty($_POST)) {
 
     $stmt = $pdo->prepare('INSERT INTO messages (name, idaboutme, email, message) VALUES (?, ?, ?, ?)');
     $stmt->execute([$name, 1, $email, $message]);
+
+    $to_email = "lmalheiro@ipvc.pt";
+    $subject = "Test email to send from XAMPP";
+    $body = "Hi, You have a new message in your page ";
+    $headers = 'From: lmalheiro@ipvc.pt' . "\r\n" .
+        'Reply-To: lmalheiro@ipvc.pt' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+
+    if (mail($to_email, $subject, $body, $headers))
+
+    {
+        echo "Email successfully sent to $to_email...";
+    }
+
+    else{
+        echo "Email sending failed!";
+    }
+
     header("Location: ".$_SERVER['HTTP_REFERER']."");
 }
 ?>
@@ -35,6 +54,8 @@ if (!empty($_POST)) {
         toastLiveExample.show();
     }
 </script>
+
+
 
 
 
