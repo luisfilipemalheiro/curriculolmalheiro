@@ -1,4 +1,3 @@
-
 window.addEventListener("load", () => {
     let taxes = {
         710: 0,
@@ -119,10 +118,3 @@ window.addEventListener("load", () => {
     const calculateButton = document.getElementById("calculate");
     calculateButton.addEventListener("click", calculateNetSalary);
 });
-
-function reset(){
-    var form = document.getElementById("form");
-    const typemedal = document.getElementById("meal_allowance").value; // tipo de subsidio
-    typemedal.value = 0;
-    form.reset();
-}

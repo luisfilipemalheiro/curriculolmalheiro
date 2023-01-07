@@ -10,6 +10,10 @@ $SLQ->setFetchMode(PDO::FETCH_ASSOC);
 $row = $SLQ->fetch()
 ?>
 <script src="calculator.js"></script>
+<script> function reset(){
+    console.log("entrei");
+    window.location.reload();
+    }</script>
 <section style="padding: 80px">
     <div class="row">
         <div class="col-1">
@@ -88,59 +92,44 @@ $row = $SLQ->fetch()
             Finance Simulator
         </div>
         <div class="card-body">
-            <h5 class="card-title">Earned money</h5>
-            <form class="needs-validation" method="post" id="form" novalidate>
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <label for="base_salary">Basic Salary</label>
-                        <input type="number" class="form-control" id="base_salary" name="base_salary" placeholder="Insert Basic Salary" required>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="meal_allowance" class="label" >Type of Medal</label>
-                        <select class="form-select" id="meal_allowance" name="meal_allowance">
-                            <option value="0" selected>Select option(not required)</option>
-                            <option value="1">Card</option>
-                            <option value="2">Money</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="meal_allowance_amount">Meal allowance</label>
-                        <input type="number" class="form-control" id="meal_allowance_amount" name="meal_allowance_amount" placeholder="Insert Medal Allowance" required>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="meal_days">Number days</label>
-                        <input type="number" class="form-control" id="meal_days" name="meal_days" placeholder="Insert Number Days" required>
-                    </div>
-                </div>
+        <div class="row">
+        <div class="col-md-3 mb-3">
+            <label for="base_salary">Base Salary</label>
+            <input type="number" class="form-control" id="base_salary" placeholder="Enter Base Salary" required/>
         </div>
-        <div class="card-footer">
-            <button type="button" id="calculate" class="btn btn-primary">Calculate</button>
-            <button type="button" onclick="reset()" class="btn btn-danger">Reset</button>
-            <p>Your gross salary is: <span id="gross_salary"></span></p>
-            <p>The taxes you pay are: <span id="taxes"></span></p>
-            <p>The ammout you receive as meal allowance: <span id="meal_allowance_value"></span></p>
-            <p>Meal allowance that is taxed: <span id="meal_allowance_taxed"></span></p>
-            <p>IRS tax: <span id="descontos_irs"></span></p>
-            <p>SS tax: <span id="descontos_ss"></span></p>
-            <p>Your net salary is: <span id="net_salary"></span></p>
+            <div class="col-md-3 mb-3">
+                <label class="label" for="meal_allowance">Meal Allowance</label>
+                <select class="form-select" name="meal_allowance" id="meal_allowance" required>
+                    <option value="no_allowance">No meal allowance</option>
+                    <option value="card">Meal Card</option>
+                    <option value="money">Money</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="meal_allowance_amount">Meal Allowance Amount</label>
+                <input required class="form-control" type="number" id="meal_allowance_amount" placeholder="Enter Meal Allowance Amount" value="0" disabled />
+            </div>
+            <div class="col-md-3">
+                <label for="meal_days">How many days did you work?</label>
+                <input required type="number" class="form-control" id="meal_days" placeholder="Enter Meal Days" value="0" disabled/>
+            </div>
         </div>
-        </form>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Your gross salary is: <span id="gross_salary"></span></li>
+                <li class="list-group-item">The taxes you pay are: <span id="taxes"></span></li>
+                <li class="list-group-item">The ammout you receive as meal allowance: <span id="meal_allowance_value"></span></li>
+                <li class="list-group-item">Meal allowance that is taxed: <span id="meal_allowance_taxed"></span></li>
+                <li class="list-group-item">IRS tax: <span id="descontos_irs"></span></li>
+                <li class="list-group-item">SS tax: <span id="descontos_ss"></span></li>
+                <li class="list-group-item">Your net salary is: <span id="net_salary"></span></li>
+            </ul>
+            <div class="card-footer">
+                <button id="calculate" class="btn btn-primary">Calculate</button>
+                <button onclick="reset()" class="btn btn-danger">Reset</button>
+            </div>
         </div>
     </div>
-
-
 </section>
-
-
-<!--
-<table>
-    <tr>
-        <td contenteditable>Column 1</td>
-        <td contenteditable>Column 2</td>
-        <td contenteditable>Column 3</td>
-    </tr>
-</table>
--->
 
 <script src="index.js"></script>
 
