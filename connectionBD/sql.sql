@@ -1,4 +1,4 @@
-create table aboutme
+create table SIR.aboutme
 (
     id          int          not null
         primary key,
@@ -9,7 +9,7 @@ create table aboutme
 );
 
 
-create table contactme
+create table SIR.contactme
 (
     id        int auto_increment
         primary key,
@@ -22,9 +22,9 @@ create table contactme
 );
 
 create index idaboutme
-    on contactme (idaboutme);
+    on SIR.contactme (idaboutme);
 
-create table contacts
+create table SIR.contacts
 (
     id        int auto_increment
         primary key,
@@ -36,9 +36,9 @@ create table contacts
 );
 
 create index idaboutme
-    on contacts (idaboutme);
+    on SIR.contacts (idaboutme);
 
-create table experience
+create table SIR.experience
 (
     id         int         not null
         primary key,
@@ -50,9 +50,9 @@ create table experience
 );
 
 create index idaboutme
-    on experience (idaboutme);
+    on SIR.experience (idaboutme);
 
-create table hardskills
+create table SIR.hardskills
 (
     id        int auto_increment
         primary key,
@@ -63,16 +63,16 @@ create table hardskills
 );
 
 create index idaboutme
-    on hardskills (idaboutme);
+    on SIR.hardskills (idaboutme);
 
-create table rolesuser
+create table SIR.rolesuser
 (
     id          int         not null
         primary key,
     description varchar(50) null
 );
 
-create table scholl
+create table SIR.scholl
 (
     id        int auto_increment
         primary key,
@@ -85,9 +85,9 @@ create table scholl
 );
 
 create index idaboutme
-    on scholl (idaboutme);
+    on SIR.scholl (idaboutme);
 
-create table softskills
+create table SIR.softskills
 (
     id        int auto_increment
         primary key,
@@ -98,9 +98,9 @@ create table softskills
 );
 
 create index idaboutme
-    on softskills (idaboutme);
+    on SIR.softskills (idaboutme);
 
-create table tasks
+create table SIR.tasks
 (
     id          int auto_increment
         primary key,
@@ -111,9 +111,9 @@ create table tasks
 );
 
 create index idexpirence
-    on tasks (idexpirence);
+    on SIR.tasks (idexpirence);
 
-create table users
+create table SIR.users
 (
     id        int auto_increment
         primary key,
@@ -129,7 +129,7 @@ create table users
 );
 
 create index idaboutme
-    on users (idaboutme);
+    on SIR.users (idaboutme);
 
 create index typeuser
-    on users (typeuser);
+    on SIR.users (typeuser);
