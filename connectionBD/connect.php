@@ -1,9 +1,9 @@
 <?php
 
 $DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'sir';
-$DATABASE_PASS = 'sir';
-$DATABASE_NAME = 'SIR';
+$DATABASE_USER = 'si';
+$DATABASE_PASS = 'si';
+$DATABASE_NAME = 'SI';
 # ligação à base de dados
 try {
     $LIGACAO = new PDO("mysql:host=$DATABASE_HOST;dbname=$DATABASE_NAME;charset=utf8", $DATABASE_USER, $DATABASE_PASS); // new PDO(tipo da base de dados:string de conexão específica do tipo definido)
